@@ -28,13 +28,15 @@ Statuses: `TODO`, `IN_PROGRESS`, `BLOCKED`, `DONE`. Update this file as work pro
 - [x] Mark planned destinations as unavailable without linking to missing routes.
 
 ## G3 — Home
-- [ ] Hero static layout.
-- [ ] Hero motion and reduced-motion fallback.
-- [ ] About preview.
-- [ ] Featured projects.
-- [ ] Skills overview.
-- [ ] Experience preview.
-- [ ] Contact CTA.
+
+- [x] Hero static layout.
+- [x] Hero motion and reduced-motion fallback (no animation added; a static Hero best serves this content).
+- [x] About preview.
+- [x] Featured projects.
+- [x] Skills overview.
+- [x] Experience preview.
+- [x] Contact CTA.
+- [x] Complete French home page with equivalent EN/FR navigation.
 
 ## G4 — Internal pages
 - [ ] About.

@@ -1,0 +1,593 @@
+---
+import Badge from "../ui/Badge.astro";
+import Button from "../ui/Button.astro";
+
+/** @typedef {{ lang?: "en" | "fr" }} Props */
+/** @type {Props} */
+const { lang = "en" } = Astro.props;
+const isFrench = lang === "fr";
+
+const copy = isFrench
+  ? {
+      heroLabel: "Ingénierie logicielle",
+      title: "Au-delà du code. Bâtir des systèmes.",
+      introduction:
+        "Je suis étudiant et praticien en ingénierie logicielle. Je développe mon approche vers l’architecture des systèmes et le leadership technique.",
+      projectsAction: "Voir les projets sélectionnés",
+      contactAction: "Informations de contact",
+      aboutLabel: "À propos",
+      aboutTitle: "Une pratique d’ingénierie en construction",
+      aboutBody:
+        "Mon parcours associe études et pratique du développement logiciel. Ce portfolio présente les projets et les étapes vérifiables de cette progression, sans prétendre à une expertise architecturale déjà établie.",
+      aboutAction: "Domaines d’intérêt",
+      projectsLabel: "Projets sélectionnés",
+      projectsTitle: "Du travail en cours, décrit avec précision",
+      projectsIntro:
+        "Les statuts ci-dessous reflètent les informations vérifiées disponibles. Les détails confidentiels et les technologies non confirmées sont volontairement omis.",
+      projectStatus: "Statut",
+      projects: [
+        {
+          name: "HSVP Hub",
+          status: "V1.0 fonctionnelle · V2.0 en refonte",
+          description:
+            "Projet universitaire développé progressivement dans un contexte de stage et soutenu académiquement. La V1.0 est fonctionnelle ; la refonte et le refactor de la V2.0 sont en cours.",
+        },
+        {
+          name: "JED",
+          status: "Tests et acceptation en attente",
+          description:
+            "L’implémentation du projet client est terminée. Les tests et l’acceptation par le client restent à venir.",
+        },
+        {
+          name: "Auction Bids",
+          status: "Reconstruction en cours",
+          description:
+            "Projet personnel partiellement fonctionnel, actuellement en reconstruction.",
+        },
+        {
+          name: "Library Management",
+          status: "V1 fonctionnelle",
+          description:
+            "La V1 est fonctionnelle ; les workflows et l’expérience utilisateur restent à améliorer.",
+        },
+      ],
+      skillsLabel: "Compétences",
+      skillsTitle: "Domaines d’intérêt et de développement",
+      skillsIntro:
+        "Ces repères décrivent mon parcours actuel et sa direction, pas des niveaux de maîtrise revendiqués.",
+      skills: [
+        {
+          title: "Ingénierie logicielle",
+          description: "Mon domaine d’études et de pratique.",
+        },
+        {
+          title: "Approche orientée systèmes",
+          description:
+            "Une perspective qui guide la façon dont je développe mes projets.",
+        },
+        {
+          title: "Architecture et leadership technique",
+          description:
+            "Des directions vers lesquelles je développe progressivement ma pratique.",
+        },
+      ],
+      experienceLabel: "Expérience",
+      experienceTitle:
+        "Les détails professionnels seront ajoutés lorsqu’ils seront vérifiés",
+      experienceBody:
+        "Les rôles, dates et responsabilités professionnels ne sont pas encore confirmés pour publication. Le contexte de stage documenté dans HSVP Hub est présenté dans l’aperçu du projet, sans être transformé en expérience professionnelle non vérifiée.",
+      contactLabel: "Contact",
+      contactTitle: "Restons en contact",
+      contactBody:
+        "Aucun canal de contact public n’a encore été confirmé pour ce portfolio. La page Contact dédiée sera ajoutée lors d’une phase ultérieure.",
+      planned: "Prévu dans une phase ultérieure",
+      projectListLabel: "Projets sélectionnés et statuts",
+      skillsListLabel: "Domaines d’intérêt et de développement",
+    }
+  : {
+      heroLabel: "Software Engineering",
+      title: "Beyond code. Building systems.",
+      introduction:
+        "I’m a software engineering student and practitioner, developing toward systems architecture and technical leadership.",
+      projectsAction: "Explore selected projects",
+      contactAction: "Contact information",
+      aboutLabel: "About",
+      aboutTitle: "An engineering practice in progress",
+      aboutBody:
+        "My path combines study with software development practice. This portfolio presents the projects and verifiable steps in that progression, without claiming established architectural expertise.",
+      aboutAction: "Areas of focus",
+      projectsLabel: "Selected projects",
+      projectsTitle: "Work in progress, described precisely",
+      projectsIntro:
+        "The statuses below reflect the verified information currently available. Confidential details and unconfirmed technologies are intentionally omitted.",
+      projectStatus: "Status",
+      projects: [
+        {
+          name: "HSVP Hub",
+          status: "V1.0 functional · V2.0 in redesign",
+          description:
+            "A university project developed progressively in an internship context and defended academically. V1.0 is functional; the V2.0 redesign and refactor are in progress.",
+        },
+        {
+          name: "JED",
+          status: "Testing and acceptance pending",
+          description:
+            "Implementation of this client project is complete. Client testing and acceptance are still pending.",
+        },
+        {
+          name: "Auction Bids",
+          status: "Reconstruction in progress",
+          description:
+            "A personal project with partial functionality, currently under reconstruction.",
+        },
+        {
+          name: "Library Management",
+          status: "V1 functional",
+          description:
+            "V1 is functional; workflows and user experience still need improvement.",
+        },
+      ],
+      skillsLabel: "Skills",
+      skillsTitle: "Areas of focus and development",
+      skillsIntro:
+        "These describe my current path and its direction, not claimed proficiency levels.",
+      skills: [
+        {
+          title: "Software engineering",
+          description: "My field of study and practice.",
+        },
+        {
+          title: "Systems-oriented thinking",
+          description: "A perspective guiding how I develop my projects.",
+        },
+        {
+          title: "Systems architecture and technical leadership",
+          description:
+            "Directions toward which I’m progressively developing my practice.",
+        },
+      ],
+      experienceLabel: "Experience",
+      experienceTitle: "Professional details will follow when verified",
+      experienceBody:
+        "Professional roles, dates and responsibilities are not yet confirmed for publication. The internship context documented for HSVP Hub appears in the project preview, without being presented as unverified professional experience.",
+      contactLabel: "Contact",
+      contactTitle: "Get in touch",
+      contactBody:
+        "No public contact channel has been confirmed for this portfolio yet. A dedicated Contact page will be added in a later phase.",
+      planned: "Planned for a later phase",
+      projectListLabel: "Selected projects and statuses",
+      skillsListLabel: "Areas of focus and development",
+    };
+---
+
+<main class="home" aria-labelledby="home-title">
+  <section class="home-hero" aria-labelledby="home-title">
+    <div class="home-hero__copy">
+      <p class="home-hero__label">{copy.heroLabel}</p>
+      <h1 id="home-title">{copy.title}</h1>
+      <p class="home-hero__introduction">{copy.introduction}</p>
+      <div class="home-hero__actions">
+        <Button href="#projects">{copy.projectsAction}</Button>
+        <Button href="#contact" variant="secondary">
+          {copy.contactAction}
+        </Button>
+      </div>
+    </div>
+
+    <div class="home-hero__mark" aria-hidden="true">
+      <span class="home-hero__mark-top">EP</span>
+      <span class="home-hero__mark-rule"></span>
+      <span class="home-hero__mark-bottom">EP</span>
+    </div>
+  </section>
+
+  <section
+    class="home-section home-about"
+    id="about"
+    aria-labelledby="about-title"
+  >
+    <div class="home-section__heading">
+      <p class="home-section__label">{copy.aboutLabel}</p>
+      <h2 id="about-title">{copy.aboutTitle}</h2>
+    </div>
+    <div class="home-section__body">
+      <p>{copy.aboutBody}</p>
+      <a class="home-text-link" href="#skills">
+        {copy.aboutAction}
+      </a>
+    </div>
+  </section>
+
+  <section
+    class="home-section home-projects"
+    id="projects"
+    aria-labelledby="projects-title"
+  >
+    <div class="home-section__intro">
+      <p class="home-section__label">{copy.projectsLabel}</p>
+      <h2 id="projects-title">{copy.projectsTitle}</h2>
+      <p>{copy.projectsIntro}</p>
+    </div>
+
+    <ul class="home-projects__list" aria-label={copy.projectListLabel}>
+      {copy.projects.map((project) => (
+        <li class="home-project">
+          <div class="home-project__title">
+            <h3>{project.name}</h3>
+            <Badge>{project.status}</Badge>
+          </div>
+          <p>{project.description}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section
+    class="home-section home-skills"
+    id="skills"
+    aria-labelledby="skills-title"
+  >
+    <div class="home-section__intro">
+      <p class="home-section__label">{copy.skillsLabel}</p>
+      <h2 id="skills-title">{copy.skillsTitle}</h2>
+      <p>{copy.skillsIntro}</p>
+    </div>
+
+    <ul class="home-skills__list" aria-label={copy.skillsListLabel}>
+      {copy.skills.map((skill) => (
+        <li class="home-skill">
+          <h3>{skill.title}</h3>
+          <p>{skill.description}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section
+    class="home-section home-preview"
+    id="experience"
+    aria-labelledby="experience-title"
+  >
+    <div class="home-section__heading">
+      <p class="home-section__label">{copy.experienceLabel}</p>
+      <h2 id="experience-title">{copy.experienceTitle}</h2>
+    </div>
+    <div class="home-section__body">
+      <p>{copy.experienceBody}</p>
+      <Badge>{copy.planned}</Badge>
+    </div>
+  </section>
+
+  <section class="home-contact" id="contact" aria-labelledby="contact-title">
+    <div>
+      <p class="home-section__label">{copy.contactLabel}</p>
+      <h2 id="contact-title">{copy.contactTitle}</h2>
+    </div>
+    <div class="home-contact__body">
+      <p>{copy.contactBody}</p>
+      <Badge>{copy.planned}</Badge>
+    </div>
+  </section>
+</main>
+
+<style>
+  .home {
+    width: min(100% - 2rem, 76rem);
+    margin-inline: auto;
+  }
+
+  .home-hero {
+    position: relative;
+    display: grid;
+    min-height: min(44rem, calc(100svh - 6rem));
+    grid-template-columns: minmax(0, 1fr) minmax(11rem, 0.62fr);
+    align-items: center;
+    gap: clamp(2rem, 7vw, 7rem);
+    padding-block: clamp(4rem, 10vw, 8rem);
+    border-bottom: 1px solid var(--border-default);
+    overflow: hidden;
+  }
+
+  .home-hero__copy {
+    position: relative;
+    z-index: 1;
+    max-width: 46rem;
+  }
+
+  .home-hero__label,
+  .home-section__label {
+    margin: 0 0 0.8rem;
+    color: var(--accent-green);
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .home-hero h1 {
+    max-width: 11ch;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(3.2rem, 8.5vw, 7.4rem);
+    font-weight: 650;
+    letter-spacing: -0.075em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  .home-hero__introduction {
+    max-width: 42rem;
+    margin: 1.6rem 0 0;
+    color: var(--text-muted);
+    font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+  }
+
+  .home-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.8rem;
+  }
+
+  .home-hero__mark {
+    position: relative;
+    display: grid;
+    width: min(100%, 22rem);
+    aspect-ratio: 1;
+    place-items: center;
+    justify-self: end;
+    border: 1px solid var(--border-default);
+    border-radius: 50%;
+    color: var(--accent-green);
+  }
+
+  .home-hero__mark::before,
+  .home-hero__mark::after {
+    position: absolute;
+    content: "";
+    border: 1px solid var(--border-default);
+    border-radius: 50%;
+  }
+
+  .home-hero__mark::before {
+    inset: 12%;
+  }
+
+  .home-hero__mark::after {
+    inset: 24%;
+    border-color: var(--accent-blue);
+  }
+
+  .home-hero__mark-top,
+  .home-hero__mark-bottom {
+    position: absolute;
+    z-index: 1;
+    display: grid;
+    width: 5.4rem;
+    height: 5.4rem;
+    place-items: center;
+    border: 1px solid var(--border-default);
+    border-radius: 1rem;
+    background: var(--surface-page);
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.08em;
+  }
+
+  .home-hero__mark-top {
+    top: 16%;
+    right: 7%;
+  }
+
+  .home-hero__mark-bottom {
+    bottom: 16%;
+    left: 7%;
+    color: var(--accent-blue);
+  }
+
+  .home-hero__mark-rule {
+    position: absolute;
+    width: 1px;
+    height: 66%;
+    background: var(--border-default);
+    transform: rotate(45deg);
+  }
+
+  .home-section {
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.72fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 5vw, 5rem);
+    padding-block: clamp(3rem, 7vw, 6rem);
+    border-bottom: 1px solid var(--border-default);
+    scroll-margin-top: 6rem;
+  }
+
+  .home-section__heading,
+  .home-section__intro {
+    max-width: 38rem;
+  }
+
+  .home-section h2,
+  .home-contact h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.85rem, 4vw, 3.2rem);
+    font-weight: 600;
+    letter-spacing: -0.055em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  .home-section__body {
+    max-width: 43rem;
+  }
+
+  .home-section__body p,
+  .home-section__intro > p:last-child,
+  .home-contact__body > p {
+    margin: 0;
+    color: var(--text-muted);
+  }
+
+  .home-text-link {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    margin-top: 0.8rem;
+    font-weight: 650;
+  }
+
+  .home-projects,
+  .home-skills {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  }
+
+  .home-section__intro > p:last-child {
+    max-width: 42ch;
+    margin-top: 1rem;
+  }
+
+  .home-projects__list,
+  .home-skills__list {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .home-project {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 0.8rem 1.5rem;
+    padding-block: 1.25rem;
+    border-top: 1px solid var(--border-default);
+  }
+
+  .home-project:last-child,
+  .home-skill:last-child {
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .home-project__title h3,
+  .home-skill h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 650;
+    letter-spacing: -0.025em;
+  }
+
+  .home-project__title .badge {
+    margin-top: 0.6rem;
+  }
+
+  .home-project > p,
+  .home-skill p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .home-skill {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: baseline;
+    gap: 0.8rem 1.5rem;
+    padding-block: 1.25rem;
+    border-top: 1px solid var(--border-default);
+  }
+
+  .home-preview .home-section__body,
+  .home-contact__body {
+    display: grid;
+    align-content: start;
+    justify-items: start;
+    gap: 1rem;
+  }
+
+  .home-contact {
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.72fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 5vw, 5rem);
+    margin-top: clamp(3rem, 7vw, 6rem);
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border: 1px solid var(--border-default);
+    border-radius: 0.9rem;
+    background: var(--surface-card);
+    scroll-margin-top: 6rem;
+  }
+
+  .home-contact__body {
+    max-width: 43rem;
+  }
+
+  @media (max-width: 760px) {
+    .home-hero {
+      min-height: auto;
+      grid-template-columns: minmax(0, 1fr) minmax(6rem, 0.32fr);
+      gap: 1rem;
+      padding-block: 4.5rem;
+    }
+
+    .home-hero__mark {
+      width: 100%;
+    }
+
+    .home-hero__mark-top,
+    .home-hero__mark-bottom {
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 0.75rem;
+      font-size: 1.35rem;
+    }
+
+    .home-hero__mark-top {
+      right: -5%;
+    }
+
+    .home-hero__mark-bottom {
+      left: -5%;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .home {
+      width: calc(100% - 1.25rem);
+    }
+
+    .home-hero {
+      grid-template-columns: 1fr;
+      padding-block: 3.5rem;
+    }
+
+    .home-hero h1 {
+      max-width: 10ch;
+      font-size: clamp(3rem, 15vw, 5rem);
+    }
+
+    .home-hero__mark {
+      position: absolute;
+      top: 1.8rem;
+      right: -2.7rem;
+      width: 8rem;
+      opacity: 0.28;
+    }
+
+    .home-hero__mark-top,
+    .home-hero__mark-bottom,
+    .home-hero__mark-rule {
+      display: none;
+    }
+
+    .home-section,
+    .home-contact {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .home-project,
+    .home-skill {
+      grid-template-columns: 1fr;
+      gap: 0.7rem;
+    }
+  }
+</style>

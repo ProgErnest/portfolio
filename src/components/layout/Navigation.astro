@@ -20,8 +20,7 @@ const copy = isFrench
       experience: "Expérience",
       contact: "Contact",
       planned: "Prévu",
-      unavailable:
-        "La version française de cette page n’est pas encore disponible.",
+      unavailable: "La version dans cette langue n’est pas encore disponible.",
       switchToEnglish: "Passer à l’anglais",
     }
   : {
@@ -37,20 +36,29 @@ const copy = isFrench
       experience: "Experience",
       contact: "Contact",
       planned: "Planned",
-      unavailable: "The French version of this page is not available yet.",
+      unavailable: "A version in this language is not available yet.",
       switchToFrench: "Switch to French",
     };
 
 const languagePath =
-  currentPath === "/design-system/"
-    ? "/fr/design-system/"
-    : currentPath === "/fr/design-system/"
-      ? "/design-system/"
-      : null;
+  currentPath === "/"
+    ? "/fr/"
+    : currentPath === "/fr/"
+      ? "/"
+      : currentPath === "/design-system/"
+        ? "/fr/design-system/"
+        : currentPath === "/fr/design-system/"
+          ? "/design-system/"
+          : null;
 const languageCode = isFrench ? "en" : "fr";
 const languageLabel = isFrench ? copy.switchToEnglish : copy.switchToFrench;
+const homePath = isFrench ? "/fr/" : "/";
 const items = [
-  { label: copy.home, href: "/", current: currentPath === "/" },
+  {
+    label: copy.home,
+    href: homePath,
+    current: currentPath === "/" || currentPath === "/fr/",
+  },
   { label: copy.about },
   { label: copy.projects },
   { label: copy.skills },
@@ -60,7 +68,7 @@ const items = [
 ---
 
 <header class="site-header">
-  <a class="site-brand" href="/" aria-label={copy.brand}>
+  <a class="site-brand" href={homePath} aria-label={copy.brand}>
     <span class="site-brand__mark" aria-hidden="true">
       EP
     </span>
@@ -150,7 +158,7 @@ const items = [
   }
 
   const summary = menu.querySelector("summary");
-  const mobileViewport = window.matchMedia("(max-width: 760px)");
+  const mobileViewport = window.matchMedia("(max-width: 1199px)");
 
   if (!(summary instanceof HTMLElement)) {
     throw new Error("The primary navigation summary is missing.");
@@ -326,7 +334,7 @@ const items = [
     opacity: 0.65;
   }
 
-  @media (max-width: 760px) {
+  @media (max-width: 1199px) {
     .site-header {
       gap: 0.6rem;
     }
@@ -396,7 +404,7 @@ const items = [
     }
   }
 
-  @media (max-width: 380px) {
+  @media (max-width: 440px) {
     .site-header {
       width: calc(100% - 1rem);
       padding-inline: 0.5rem;

@@ -11,7 +11,7 @@ const copy = isFrench
       home: "Accueil",
       designSystem: "Système de design",
       availability:
-        "Les pages À propos, Projets, Compétences, Expérience et Contact sont prévues, mais pas encore disponibles. L’accueil en français manque également.",
+        "Les pages À propos, Projets, Compétences, Expérience et Contact sont prévues, mais pas encore disponibles.",
     }
   : {
       brand: "Ernest Programmer",
@@ -20,15 +20,16 @@ const copy = isFrench
       home: "Home",
       designSystem: "Design system",
       availability:
-        "About, Projects, Skills, Experience and Contact are planned but not yet available. A French equivalent of the home page is also not available yet.",
+        "About, Projects, Skills, Experience and Contact are planned but not yet available.",
     };
 const designSystemPath = isFrench ? "/fr/design-system/" : "/design-system/";
+const homePath = isFrench ? "/fr/" : "/";
 ---
 
 <footer class="site-footer">
   <div class="site-footer__inner">
     <div class="site-footer__identity">
-      <a class="site-footer__brand" href="/">
+      <a class="site-footer__brand" href={homePath}>
         <span class="site-brand__mark" aria-hidden="true">
           EP
         </span>
@@ -38,7 +39,12 @@ const designSystemPath = isFrench ? "/fr/design-system/" : "/design-system/";
     </div>
 
     <nav class="site-footer__navigation" aria-label={copy.links}>
-      <a href="/" aria-current={currentPath === "/" ? "page" : undefined}>
+      <a
+        href={homePath}
+        aria-current={
+          currentPath === "/" || currentPath === "/fr/" ? "page" : undefined
+        }
+      >
         {copy.home}
       </a>
       <a
