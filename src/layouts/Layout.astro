@@ -1,27 +1,52 @@
 ---
 import "../styles/global.css";
+
+/** @typedef {{ title?: string, description?: string, lang?: "en" | "fr" }} Props */
+/** @type {Props} */
+const {
+  title = "Ernest Programmer — Software Engineering",
+  description = "A design system specimen for Ernest Programmer.",
+  lang = "en",
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <title>Ernest Programmer — Software Engineering</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f5f7f9" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=JetBrains+Mono:wght@400..700&family=Space+Grotesk:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+    <script is:inline>
+      const themeStorageKey = "ernest-theme";
+      let initialTheme = null;
+      try {
+        const savedTheme = localStorage.getItem(themeStorageKey);
+        if (savedTheme === "light" || savedTheme === "dark") {
+          initialTheme = savedTheme;
+        }
+      } catch (error) {
+        console.warn("Could not read the saved theme preference.", error);
+      }
+
+      document.documentElement.dataset.theme =
+        initialTheme ??
+        (window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light");
+    </script>
   </head>
   <body>
     <slot />
   </body>
 </html>
-
-<style>
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
-</style>

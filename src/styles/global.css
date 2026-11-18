@@ -1,1 +1,195 @@
 @import "tailwindcss";
+
+@theme {
+  --font-display:
+    "Space Grotesk", "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  --font-body: Inter, "Segoe UI", Arial, sans-serif;
+  --font-mono:
+    "JetBrains Mono", "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+  --color-page: var(--surface-page);
+  --color-surface: var(--surface-card);
+  --color-surface-raised: var(--surface-raised);
+  --color-text: var(--text-primary);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border-default);
+  --color-accent-green: var(--accent-green);
+  --color-accent-blue: var(--accent-blue);
+  --color-focus: var(--focus-ring);
+}
+
+:root {
+  color-scheme: light;
+  --surface-page: #f5f7f9;
+  --surface-card: #ffffff;
+  --surface-raised: #e9eef2;
+  --text-primary: #13212b;
+  --text-muted: #465660;
+  --border-default: #778994;
+  --accent-green: #087f59;
+  --accent-blue: #1e6fae;
+  --focus-ring: #0b6ea8;
+  --button-primary: #087f59;
+  --button-primary-text: #ffffff;
+  font-family: var(--font-body);
+  background: var(--surface-page);
+  color: var(--text-primary);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --surface-page: #101820;
+  --surface-card: #182631;
+  --surface-raised: #203542;
+  --text-primary: #f3f7f8;
+  --text-muted: #b8c6ce;
+  --border-default: #617986;
+  --accent-green: #5cd6a2;
+  --accent-blue: #78b8f4;
+  --focus-ring: #95c8ff;
+  --button-primary: #5cd6a2;
+  --button-primary-text: #101820;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --surface-page: #101820;
+    --surface-card: #182631;
+    --surface-raised: #203542;
+    --text-primary: #f3f7f8;
+    --text-muted: #b8c6ce;
+    --border-default: #617986;
+    --accent-green: #5cd6a2;
+    --accent-blue: #78b8f4;
+    --focus-ring: #95c8ff;
+    --button-primary: #5cd6a2;
+    --button-primary-text: #101820;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--surface-page);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--surface-page);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: var(--accent-blue);
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 0.08em;
+}
+
+a:hover {
+  text-decoration-thickness: 0.14em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.button {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.65rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button--primary {
+  background: var(--button-primary);
+  color: var(--button-primary-text);
+}
+
+.button--secondary {
+  border-color: var(--border-default);
+  background: var(--surface-card);
+  color: var(--text-primary);
+}
+
+.button--quiet {
+  border-color: transparent;
+  background: transparent;
+  color: var(--accent-blue);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.75rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--border-default);
+  border-radius: 0.4rem;
+  background: var(--surface-raised);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.field {
+  display: block;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--border-default);
+  border-radius: 0.45rem;
+  background: var(--surface-card);
+  color: var(--text-primary);
+}
+
+.field::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
+.panel {
+  border: 1px solid var(--border-default);
+  border-radius: 0.8rem;
+  background: var(--surface-card);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,118 @@
+---
+/** @typedef {{ lang?: "en" | "fr" }} Props */
+/** @type {Props} */
+const { lang = "en" } = Astro.props;
+const labels =
+  lang === "fr"
+    ? { light: "Passer au thème clair", dark: "Passer au thème sombre" }
+    : { light: "Switch to light theme", dark: "Switch to dark theme" };
+---
+
+<button
+  id="theme-toggle"
+  class="theme-toggle"
+  type="button"
+  aria-label={labels.dark}
+  title={labels.dark}
+  data-theme-toggle
+  data-light-label={labels.light}
+  data-dark-label={labels.dark}
+>
+  <svg
+    class="theme-toggle__sun"
+    aria-hidden="true"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+  >
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+  </svg>
+  <svg
+    class="theme-toggle__moon"
+    aria-hidden="true"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+  >
+    <path d="M20.2 15.1A8.5 8.5 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z" />
+  </svg>
+  <span class="theme-toggle__label">{labels.dark}</span>
+</button>
+
+<script>
+  const root = document.documentElement;
+  const button = document.getElementById("theme-toggle");
+  const storageKey = "ernest-theme";
+
+  if (!(button instanceof HTMLButtonElement)) {
+    throw new Error("The theme toggle button is missing.");
+  }
+
+  const updateLabel = () => {
+    const label =
+      root.dataset.theme === "dark"
+        ? button.dataset.lightLabel
+        : button.dataset.darkLabel;
+    if (label) {
+      button.setAttribute("aria-label", label);
+      button.title = label;
+      const visibleLabel = button.querySelector(".theme-toggle__label");
+      if (visibleLabel) visibleLabel.textContent = label;
+    }
+  };
+
+  updateLabel();
+
+  button.addEventListener("click", () => {
+    const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
+    root.dataset.theme = nextTheme;
+    updateLabel();
+
+    try {
+      localStorage.setItem(storageKey, nextTheme);
+    } catch (error) {
+      console.warn("Could not save the theme preference.", error);
+    }
+  });
+</script>
+
+<style>
+  .theme-toggle {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--border-default);
+    border-radius: 0.6rem;
+    background: var(--surface-card);
+    color: var(--text-primary);
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .theme-toggle svg {
+    width: 1.15rem;
+    height: 1.15rem;
+    flex: none;
+  }
+
+  .theme-toggle__moon,
+  :global([data-theme="dark"]) .theme-toggle__sun {
+    display: none;
+  }
+
+  :global([data-theme="dark"]) .theme-toggle__moon {
+    display: block;
+  }
+
+  .theme-toggle__label {
+    font-size: 0.875rem;
+  }
+</style>

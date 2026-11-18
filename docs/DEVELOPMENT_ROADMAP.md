@@ -13,11 +13,11 @@ Statuses: `TODO`, `IN_PROGRESS`, `BLOCKED`, `DONE`. Update this file as work pro
 - [ ] Create baseline commit only after user authorization.
 
 ## G1 — Design system
-- [ ] Define validated color tokens and contrast.
-- [ ] Configure typography and fallbacks.
-- [ ] Implement theme switching and persistence.
-- [ ] Build core UI primitives.
-- [ ] Create design-system preview page.
+- [x] Define validated color tokens and contrast.
+- [x] Configure typography and fallbacks.
+- [x] Implement theme switching and persistence.
+- [x] Build core UI primitives.
+- [x] Create design-system preview page.
 
 ## G2 — Global shell and navigation
 - [ ] Main layout and metadata.

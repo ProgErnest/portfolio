@@ -1,0 +1,540 @@
+---
+import Badge from "./ui/Badge.astro";
+import Button from "./ui/Button.astro";
+import ThemeToggle from "./ui/ThemeToggle.astro";
+
+/** @typedef {{ lang?: "en" | "fr" }} Props */
+/** @type {Props} */
+const { lang = "en" } = Astro.props;
+const isFrench = lang === "fr";
+
+const copy = isFrench
+  ? {
+      eyebrow: "Référence du système",
+      title: "Une interface claire, pensée avec rigueur.",
+      intro:
+        "Un aperçu pratique des couleurs, de la typographie et des composants du portfolio.",
+      language: "English",
+      paletteTitle: "Couleurs et contraste",
+      paletteIntro:
+        "Deux palettes sémantiques. Les accents indiquent les actions et les liens ; les surfaces structurent le contenu.",
+      light: "Thème clair",
+      dark: "Thème sombre",
+      tokens: [
+        ["Fond", "#F5F7F9"],
+        ["Surface", "#FFFFFF"],
+        ["Surface élevée", "#E9EEF2"],
+        ["Texte principal", "#13212B"],
+        ["Texte secondaire", "#465660"],
+        ["Bordure", "#778994"],
+        ["Accent vert", "#087F59"],
+        ["Accent bleu", "#1E6FAE"],
+        ["Focus", "#0B6EA8"],
+      ],
+      darkTokens: [
+        ["Fond", "#101820"],
+        ["Surface", "#182631"],
+        ["Surface élevée", "#203542"],
+        ["Texte principal", "#F3F7F8"],
+        ["Texte secondaire", "#B8C6CE"],
+        ["Bordure", "#617986"],
+        ["Accent vert", "#5CD6A2"],
+        ["Accent bleu", "#78B8F4"],
+        ["Focus", "#95C8FF"],
+      ],
+      typeTitle: "Typographie",
+      typeIntro:
+        "Space Grotesk porte les titres, Inter assure la lecture courante et JetBrains Mono distingue les extraits techniques.",
+      headingSample: "Des systèmes bien composés.",
+      bodySample:
+        "La hiérarchie reste lisible sans effets décoratifs. Les textes courants conservent une largeur de lecture confortable.",
+      monoSample: "--focus-ring: var(--accent-blue);",
+      componentTitle: "Composants de base",
+      componentIntro:
+        "Des contrôles sobres, avec des états explicites et un focus clavier visible.",
+      primary: "Aller au champ",
+      secondary: "Voir la typographie",
+      quiet: "Lien discret",
+      disabled: "Désactivé",
+      badge: "Composant",
+      fieldLabel: "Exemple de champ",
+      placeholder: "Saisissez du texte",
+      surfaceTitle: "Surface de contenu",
+      surfaceText:
+        "Une surface distincte sépare le contenu sans ajouter d’ombre ou de décoration superflue.",
+      focusHint:
+        "Utilisez Tab pour vérifier le contour de focus sur les boutons, le thème et le champ.",
+      footer:
+        "Spécimen du système de design · Les éléments de cette page illustrent les styles, pas des fonctionnalités métier.",
+    }
+  : {
+      eyebrow: "System reference",
+      title: "Clear interfaces, carefully engineered.",
+      intro:
+        "A working reference for the portfolio’s colors, typography, and interface components.",
+      language: "Français",
+      paletteTitle: "Color and contrast",
+      paletteIntro:
+        "Two semantic palettes. Accents identify actions and links; surfaces organize content.",
+      light: "Light theme",
+      dark: "Dark theme",
+      tokens: [
+        ["Page", "#F5F7F9"],
+        ["Surface", "#FFFFFF"],
+        ["Raised surface", "#E9EEF2"],
+        ["Primary text", "#13212B"],
+        ["Secondary text", "#465660"],
+        ["Border", "#778994"],
+        ["Green accent", "#087F59"],
+        ["Blue accent", "#1E6FAE"],
+        ["Focus", "#0B6EA8"],
+      ],
+      darkTokens: [
+        ["Page", "#101820"],
+        ["Surface", "#182631"],
+        ["Raised surface", "#203542"],
+        ["Primary text", "#F3F7F8"],
+        ["Secondary text", "#B8C6CE"],
+        ["Border", "#617986"],
+        ["Green accent", "#5CD6A2"],
+        ["Blue accent", "#78B8F4"],
+        ["Focus", "#95C8FF"],
+      ],
+      typeTitle: "Typography",
+      typeIntro:
+        "Space Grotesk carries headings, Inter supports reading, and JetBrains Mono distinguishes technical details.",
+      headingSample: "Systems, composed with care.",
+      bodySample:
+        "Hierarchy stays legible without decorative effects. Body copy keeps a comfortable reading width.",
+      monoSample: "--focus-ring: var(--accent-blue);",
+      componentTitle: "Core components",
+      componentIntro:
+        "Quiet controls with explicit states and a visible keyboard focus indicator.",
+      primary: "Go to field",
+      secondary: "View typography",
+      quiet: "Quiet link",
+      disabled: "Disabled",
+      badge: "Component",
+      fieldLabel: "Sample field",
+      placeholder: "Enter some text",
+      surfaceTitle: "Content surface",
+      surfaceText:
+        "A distinct surface separates content without unnecessary shadow or decoration.",
+      focusHint:
+        "Use Tab to inspect the focus outline on the buttons, theme control, and field.",
+      footer:
+        "Design system specimen · These examples demonstrate styles, not product features.",
+    };
+
+const palettes = [
+  { title: copy.light, tokens: copy.tokens },
+  { title: copy.dark, tokens: copy.darkTokens },
+];
+---
+
+<div class="specimen">
+  <header class="specimen__header">
+    <a
+      class="specimen__brand"
+      href={isFrench ? "/fr/design-system/" : "/design-system/"}
+    >
+      <span class="specimen__mark" aria-hidden="true">
+        EP
+      </span>
+      <span>Ernest Programmer</span>
+    </a>
+    <div class="specimen__tools">
+      <a
+        class="specimen__language"
+        href={isFrench ? "/design-system/" : "/fr/design-system/"}
+      >
+        {copy.language}
+      </a>
+      <ThemeToggle lang={lang} />
+    </div>
+  </header>
+
+  <main class="specimen__main">
+    <section class="specimen__intro" aria-labelledby="page-title">
+      <p class="specimen__eyebrow">{copy.eyebrow}</p>
+      <h1 id="page-title">{copy.title}</h1>
+      <p class="specimen__lead">{copy.intro}</p>
+    </section>
+
+    <section class="specimen__section" aria-labelledby="palette-title">
+      <div class="specimen__section-heading">
+        <h2 id="palette-title">{copy.paletteTitle}</h2>
+        <p>{copy.paletteIntro}</p>
+      </div>
+      <div class="palette-grid">
+        {palettes.map((palette) => (
+          <section class="palette panel" aria-label={palette.title}>
+            <h3>{palette.title}</h3>
+            <ul class="swatches">
+              {palette.tokens.map(([name, value]) => (
+                <li class="swatch">
+                  <span
+                    class="swatch__chip"
+                    style={`--swatch-color: ${value}`}
+                    aria-hidden="true"
+                  />
+                  <span class="swatch__info">
+                    <span class="swatch__name">{name}</span>
+                    <code>{value}</code>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+    </section>
+
+    <section class="specimen__section" aria-labelledby="type-title">
+      <div class="specimen__section-heading">
+        <h2 id="type-title">{copy.typeTitle}</h2>
+        <p>{copy.typeIntro}</p>
+      </div>
+      <div class="type-specimen panel">
+        <div>
+          <p class="type-specimen__label">Space Grotesk · 600</p>
+          <p class="type-specimen__heading">{copy.headingSample}</p>
+        </div>
+        <div>
+          <p class="type-specimen__label">Inter · 400</p>
+          <p class="type-specimen__body">{copy.bodySample}</p>
+        </div>
+        <div>
+          <p class="type-specimen__label">JetBrains Mono · 500</p>
+          <code class="type-specimen__code">{copy.monoSample}</code>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="specimen__section"
+      id="controls"
+      aria-labelledby="components-title"
+    >
+      <div class="specimen__section-heading">
+        <h2 id="components-title">{copy.componentTitle}</h2>
+        <p>{copy.componentIntro}</p>
+      </div>
+      <div class="component-grid">
+        <div class="component-sample panel">
+          <h3>{copy.componentTitle}</h3>
+          <div class="button-row">
+            <Button href="#field-example">{copy.primary}</Button>
+            <Button href="#type-title" variant="secondary">
+              {copy.secondary}
+            </Button>
+            <Button href="#palette-title" variant="quiet">
+              {copy.quiet}
+            </Button>
+            <button class="button button--secondary" type="button" disabled>
+              {copy.disabled}
+            </button>
+          </div>
+          <Badge>{copy.badge}</Badge>
+        </div>
+        <div class="component-sample panel" id="field-example">
+          <label for="sample-field">{copy.fieldLabel}</label>
+          <input
+            class="field"
+            id="sample-field"
+            name="sample"
+            type="text"
+            placeholder={copy.placeholder}
+          />
+          <p class="component-sample__hint">{copy.focusHint}</p>
+        </div>
+        <article class="component-sample panel">
+          <h3>{copy.surfaceTitle}</h3>
+          <p>{copy.surfaceText}</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="specimen__footer">{copy.footer}</footer>
+</div>
+
+<style>
+  .specimen {
+    width: min(100% - 2rem, 76rem);
+    margin-inline: auto;
+  }
+
+  .specimen__header {
+    display: flex;
+    min-height: 5rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .specimen__brand,
+  .specimen__tools {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+
+  .specimen__brand {
+    color: var(--text-primary);
+    font-weight: 650;
+    text-decoration: none;
+  }
+
+  .specimen__mark {
+    display: grid;
+    width: 2.4rem;
+    height: 2.4rem;
+    place-items: center;
+    border: 1px solid var(--border-default);
+    border-radius: 0.55rem;
+    background: var(--surface-card);
+    color: var(--accent-green);
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .specimen__language {
+    font-weight: 600;
+  }
+
+  .specimen__main {
+    padding-block: clamp(2.5rem, 7vw, 5.5rem);
+  }
+
+  .specimen__intro {
+    max-width: 52rem;
+    margin-bottom: clamp(3rem, 7vw, 5.5rem);
+  }
+
+  .specimen__eyebrow,
+  .type-specimen__label {
+    margin: 0 0 0.65rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin-top: 0;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    line-height: 1.2;
+  }
+
+  h1 {
+    max-width: 14ch;
+    margin-bottom: 1rem;
+    font-size: clamp(2.5rem, 6vw, 4.8rem);
+    letter-spacing: -0.055em;
+  }
+
+  h2 {
+    margin-bottom: 0.45rem;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    letter-spacing: -0.035em;
+  }
+
+  h3 {
+    margin-bottom: 1rem;
+    font-size: 1.15rem;
+  }
+
+  .specimen__lead {
+    max-width: 54ch;
+    margin: 0;
+    color: var(--text-muted);
+    font-size: clamp(1.05rem, 2vw, 1.2rem);
+  }
+
+  .specimen__section {
+    margin-top: clamp(3.5rem, 8vw, 6rem);
+  }
+
+  .specimen__section-heading {
+    max-width: 43rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .specimen__section-heading p {
+    margin-bottom: 0;
+    color: var(--text-muted);
+  }
+
+  .palette-grid,
+  .component-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .palette,
+  .type-specimen,
+  .component-sample {
+    padding: clamp(1rem, 2.5vw, 1.5rem);
+  }
+
+  .palette h3 {
+    margin-bottom: 1rem;
+  }
+
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .swatch {
+    min-width: 0;
+  }
+
+  .swatch__chip {
+    display: block;
+    height: 2.6rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid var(--border-default);
+    border-radius: 0.35rem;
+    background: var(--swatch-color);
+  }
+
+  .swatch__info {
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .swatch__name {
+    overflow-wrap: anywhere;
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .swatch code,
+  .type-specimen__code {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+  }
+
+  .type-specimen {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .type-specimen__label {
+    margin-bottom: 0.55rem;
+  }
+
+  .type-specimen__heading {
+    margin-bottom: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.2;
+  }
+
+  .type-specimen__body {
+    max-width: 62ch;
+    margin-bottom: 0;
+  }
+
+  .type-specimen__code {
+    display: inline-block;
+    padding: 0.55rem 0.7rem;
+    border-radius: 0.35rem;
+    background: var(--surface-raised);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+  }
+
+  .component-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .component-sample {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .component-sample h3,
+  .component-sample p {
+    margin-bottom: 0;
+  }
+
+  .component-sample label {
+    font-weight: 600;
+  }
+
+  .button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .component-sample__hint {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+  }
+
+  .specimen__footer {
+    padding-block: 1.5rem 2rem;
+    border-top: 1px solid var(--border-default);
+    color: var(--text-muted);
+    font-size: 0.875rem;
+  }
+
+  @media (max-width: 760px) {
+    .palette-grid,
+    .component-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .specimen {
+      width: min(100% - 1.25rem, 76rem);
+    }
+
+    .specimen__header {
+      min-height: 4.5rem;
+      gap: 0.5rem;
+    }
+
+    .specimen__brand,
+    .specimen__tools {
+      gap: 0.5rem;
+    }
+
+    .specimen__brand {
+      font-size: 0.84rem;
+    }
+
+    .specimen__language {
+      font-size: 0.85rem;
+    }
+
+    .swatches {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>
