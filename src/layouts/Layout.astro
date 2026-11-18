@@ -1,13 +1,22 @@
 ---
 import "../styles/global.css";
+import Navigation from "../components/layout/Navigation.astro";
+import Footer from "../components/layout/Footer.astro";
 
 /** @typedef {{ title?: string, description?: string, lang?: "en" | "fr" }} Props */
 /** @type {Props} */
-const {
-  title = "Ernest Programmer — Software Engineering",
-  description = "A design system specimen for Ernest Programmer.",
-  lang = "en",
-} = Astro.props;
+const { lang = "en" } = Astro.props;
+const title =
+  Astro.props.title ??
+  (lang === "fr"
+    ? "Ernest Programmer — Ingénierie logicielle"
+    : "Ernest Programmer — Software Engineering");
+const description =
+  Astro.props.description ??
+  (lang === "fr"
+    ? "Portfolio en ingénierie logicielle d’Ernest Programmer, orienté vers la conception de systèmes."
+    : "Software engineering portfolio by Ernest Programmer, focused on systems-oriented engineering.");
+const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -20,6 +29,10 @@ const {
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#f5f7f9" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content={lang === "fr" ? "fr_FR" : "en_US"} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -47,6 +60,13 @@ const {
     </script>
   </head>
   <body>
-    <slot />
+    <a class="skip-link" href="#main-content">
+      {lang === "fr" ? "Aller au contenu" : "Skip to content"}
+    </a>
+    <Navigation lang={lang} currentPath={currentPath} />
+    <div id="main-content" class="site-content" tabindex="-1">
+      <slot />
+    </div>
+    <Footer lang={lang} currentPath={currentPath} />
   </body>
 </html>

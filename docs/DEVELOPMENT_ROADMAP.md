@@ -20,11 +20,12 @@ Statuses: `TODO`, `IN_PROGRESS`, `BLOCKED`, `DONE`. Update this file as work pro
 - [x] Create design-system preview page.
 
 ## G2 — Global shell and navigation
-- [ ] Main layout and metadata.
-- [ ] Floating navigation and EP mark.
-- [ ] Mobile navigation.
-- [ ] EN/FR route mapping and language switch.
-- [ ] Footer and active route states.
+- [x] Main layout and essential metadata.
+- [x] Floating navigation and EP mark.
+- [x] Mobile navigation with keyboard-operable disclosure and close behavior.
+- [x] EN/FR route mapping and language switch where an equivalent route exists.
+- [x] Bilingual footer and active route states.
+- [x] Mark planned destinations as unavailable without linking to missing routes.
 
 ## G3 — Home
 - [ ] Hero static layout.

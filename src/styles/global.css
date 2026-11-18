@@ -72,12 +72,10 @@
 }
 
 html {
-  min-width: 320px;
   background: var(--surface-page);
 }
 
 body {
-  min-width: 320px;
   min-height: 100vh;
   margin: 0;
   background: var(--surface-page);
@@ -103,6 +101,25 @@ a {
 
 a:hover {
   text-decoration-thickness: 0.14em;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 0.5rem;
+  left: 0.5rem;
+  padding: 0.55rem 0.8rem;
+  transform: translateY(-180%);
+  border: 1px solid var(--border-default);
+  border-radius: 0.5rem;
+  background: var(--surface-card);
+  color: var(--text-primary);
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 :focus-visible {

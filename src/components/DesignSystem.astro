@@ -1,7 +1,6 @@
 ---
 import Badge from "./ui/Badge.astro";
 import Button from "./ui/Button.astro";
-import ThemeToggle from "./ui/ThemeToggle.astro";
 
 /** @typedef {{ lang?: "en" | "fr" }} Props */
 /** @type {Props} */
@@ -14,7 +13,6 @@ const copy = isFrench
       title: "Une interface claire, pensée avec rigueur.",
       intro:
         "Un aperçu pratique des couleurs, de la typographie et des composants du portfolio.",
-      language: "English",
       paletteTitle: "Couleurs et contraste",
       paletteIntro:
         "Deux palettes sémantiques. Les accents indiquent les actions et les liens ; les surfaces structurent le contenu.",
@@ -72,7 +70,6 @@ const copy = isFrench
       title: "Clear interfaces, carefully engineered.",
       intro:
         "A working reference for the portfolio’s colors, typography, and interface components.",
-      language: "Français",
       paletteTitle: "Color and contrast",
       paletteIntro:
         "Two semantic palettes. Accents identify actions and links; surfaces organize content.",
@@ -133,27 +130,6 @@ const palettes = [
 ---
 
 <div class="specimen">
-  <header class="specimen__header">
-    <a
-      class="specimen__brand"
-      href={isFrench ? "/fr/design-system/" : "/design-system/"}
-    >
-      <span class="specimen__mark" aria-hidden="true">
-        EP
-      </span>
-      <span>Ernest Programmer</span>
-    </a>
-    <div class="specimen__tools">
-      <a
-        class="specimen__language"
-        href={isFrench ? "/design-system/" : "/fr/design-system/"}
-      >
-        {copy.language}
-      </a>
-      <ThemeToggle lang={lang} />
-    </div>
-  </header>
-
   <main class="specimen__main">
     <section class="specimen__intro" aria-labelledby="page-title">
       <p class="specimen__eyebrow">{copy.eyebrow}</p>
@@ -263,46 +239,6 @@ const palettes = [
   .specimen {
     width: min(100% - 2rem, 76rem);
     margin-inline: auto;
-  }
-
-  .specimen__header {
-    display: flex;
-    min-height: 5rem;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.25rem;
-    border-bottom: 1px solid var(--border-default);
-  }
-
-  .specimen__brand,
-  .specimen__tools {
-    display: flex;
-    align-items: center;
-    gap: 0.9rem;
-  }
-
-  .specimen__brand {
-    color: var(--text-primary);
-    font-weight: 650;
-    text-decoration: none;
-  }
-
-  .specimen__mark {
-    display: grid;
-    width: 2.4rem;
-    height: 2.4rem;
-    place-items: center;
-    border: 1px solid var(--border-default);
-    border-radius: 0.55rem;
-    background: var(--surface-card);
-    color: var(--accent-green);
-    font-family: var(--font-display);
-    font-size: 0.9rem;
-    font-weight: 700;
-  }
-
-  .specimen__language {
-    font-weight: 600;
   }
 
   .specimen__main {
@@ -513,24 +449,6 @@ const palettes = [
   @media (max-width: 520px) {
     .specimen {
       width: min(100% - 1.25rem, 76rem);
-    }
-
-    .specimen__header {
-      min-height: 4.5rem;
-      gap: 0.5rem;
-    }
-
-    .specimen__brand,
-    .specimen__tools {
-      gap: 0.5rem;
-    }
-
-    .specimen__brand {
-      font-size: 0.84rem;
-    }
-
-    .specimen__language {
-      font-size: 0.85rem;
     }
 
     .swatches {

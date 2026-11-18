@@ -1,0 +1,148 @@
+---
+/** @typedef {{ lang?: "en" | "fr", currentPath?: string }} Props */
+/** @type {Props} */
+const { lang = "en", currentPath = "/" } = Astro.props;
+const isFrench = lang === "fr";
+const copy = isFrench
+  ? {
+      brand: "Ernest Programmer",
+      tagline: "Au-delà du code. Bâtir des systèmes.",
+      links: "Liens du site",
+      home: "Accueil",
+      designSystem: "Système de design",
+      availability:
+        "Les pages À propos, Projets, Compétences, Expérience et Contact sont prévues, mais pas encore disponibles. L’accueil en français manque également.",
+    }
+  : {
+      brand: "Ernest Programmer",
+      tagline: "Beyond Code. Building Systems.",
+      links: "Site links",
+      home: "Home",
+      designSystem: "Design system",
+      availability:
+        "About, Projects, Skills, Experience and Contact are planned but not yet available. A French equivalent of the home page is also not available yet.",
+    };
+const designSystemPath = isFrench ? "/fr/design-system/" : "/design-system/";
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__identity">
+      <a class="site-footer__brand" href="/">
+        <span class="site-brand__mark" aria-hidden="true">
+          EP
+        </span>
+        <span>{copy.brand}</span>
+      </a>
+      <p class="site-footer__tagline">{copy.tagline}</p>
+    </div>
+
+    <nav class="site-footer__navigation" aria-label={copy.links}>
+      <a href="/" aria-current={currentPath === "/" ? "page" : undefined}>
+        {copy.home}
+      </a>
+      <a
+        href={designSystemPath}
+        aria-current={
+          currentPath === "/design-system/" ||
+          currentPath === "/fr/design-system/"
+            ? "page"
+            : undefined
+        }
+      >
+        {copy.designSystem}
+      </a>
+    </nav>
+
+    <p class="site-footer__availability">{copy.availability}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    width: min(100% - 2rem, 76rem);
+    margin: clamp(3rem, 8vw, 6rem) auto 0;
+    border-top: 1px solid var(--border-default);
+  }
+
+  .site-footer__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1.5rem 2rem;
+    padding-block: 1.75rem 2.25rem;
+  }
+
+  .site-footer__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-weight: 650;
+    text-decoration: none;
+  }
+
+  .site-brand__mark {
+    display: grid;
+    width: 2.25rem;
+    height: 2.25rem;
+    place-items: center;
+    border: 1px solid var(--border-default);
+    border-radius: 0.5rem;
+    background: var(--surface-raised);
+    color: var(--accent-green);
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: -0.07em;
+  }
+
+  .site-footer__tagline {
+    margin: 0.55rem 0 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  .site-footer__navigation {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: start;
+    justify-content: flex-end;
+    gap: 0.6rem 1rem;
+  }
+
+  .site-footer__navigation a {
+    min-height: 2.75rem;
+    padding-block: 0.55rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .site-footer__navigation a[aria-current="page"] {
+    color: var(--accent-green);
+    text-decoration-thickness: 0.14em;
+  }
+
+  .site-footer__availability {
+    grid-column: 1 / -1;
+    max-width: 75ch;
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 560px) {
+    .site-footer {
+      width: calc(100% - 1.25rem);
+    }
+
+    .site-footer__inner {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .site-footer__navigation {
+      justify-content: flex-start;
+    }
+  }
+</style>
