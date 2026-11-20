@@ -1,4 +1,6 @@
 ---
+import { pageRoutes } from "../../data/routes";
+
 /** @typedef {{ lang?: "en" | "fr", currentPath?: string }} Props */
 /** @type {Props} */
 const { lang = "en", currentPath = "/" } = Astro.props;
@@ -10,8 +12,13 @@ const copy = isFrench
       links: "Liens du site",
       home: "Accueil",
       designSystem: "Système de design",
+      about: "À propos",
+      projects: "Projets",
+      skills: "Compétences",
+      experience: "Expérience",
+      contact: "Contact",
       availability:
-        "Les pages À propos, Projets, Compétences, Expérience et Contact sont prévues, mais pas encore disponibles.",
+        "Les coordonnées publiques et les détails professionnels restent à confirmer.",
     }
   : {
       brand: "Ernest Programmer",
@@ -19,11 +26,42 @@ const copy = isFrench
       links: "Site links",
       home: "Home",
       designSystem: "Design system",
+      about: "About",
+      projects: "Projects",
+      skills: "Skills",
+      experience: "Experience",
+      contact: "Contact",
       availability:
-        "About, Projects, Skills, Experience and Contact are planned but not yet available.",
+        "Public contact details and professional experience remain unconfirmed.",
     };
-const designSystemPath = isFrench ? "/fr/design-system/" : "/design-system/";
-const homePath = isFrench ? "/fr/" : "/";
+/** @param {{ en: string; fr: string }} routes */
+const homePath = isFrench ? pageRoutes.home.fr : pageRoutes.home.en;
+const navItems = [
+  {
+    label: copy.about,
+    path: isFrench ? pageRoutes.about.fr : pageRoutes.about.en,
+  },
+  {
+    label: copy.projects,
+    path: isFrench ? pageRoutes.projects.fr : pageRoutes.projects.en,
+  },
+  {
+    label: copy.skills,
+    path: isFrench ? pageRoutes.skills.fr : pageRoutes.skills.en,
+  },
+  {
+    label: copy.experience,
+    path: isFrench ? pageRoutes.experience.fr : pageRoutes.experience.en,
+  },
+  {
+    label: copy.contact,
+    path: isFrench ? pageRoutes.contact.fr : pageRoutes.contact.en,
+  },
+  {
+    label: copy.designSystem,
+    path: isFrench ? pageRoutes.designSystem.fr : pageRoutes.designSystem.en,
+  },
+];
 ---
 
 <footer class="site-footer">
@@ -47,17 +85,14 @@ const homePath = isFrench ? "/fr/" : "/";
       >
         {copy.home}
       </a>
-      <a
-        href={designSystemPath}
-        aria-current={
-          currentPath === "/design-system/" ||
-          currentPath === "/fr/design-system/"
-            ? "page"
-            : undefined
-        }
-      >
-        {copy.designSystem}
-      </a>
+      {navItems.map((item) => (
+        <a
+          href={item.path}
+          aria-current={currentPath === item.path ? "page" : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
     </nav>
 
     <p class="site-footer__availability">{copy.availability}</p>

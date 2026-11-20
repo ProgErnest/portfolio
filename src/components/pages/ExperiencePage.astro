@@ -1,0 +1,45 @@
+---
+import PageFrame from "./PageFrame.astro";
+
+/** @typedef {{ lang: "en" | "fr" }} Props */
+/** @type {Props} */
+const { lang } = Astro.props;
+const copy =
+  lang === "fr"
+    ? {
+        label: "Expérience",
+        title: "Les détails professionnels restent à confirmer",
+        introduction:
+          "Aucun rôle, employeur, date ou ensemble de responsabilités n’a été confirmé pour publication.",
+        heading: "Contenu différé",
+        body: "Le contexte de stage documenté pour HSVP Hub reste attaché à la fiche du projet. Il ne permet pas, à lui seul, de publier une expérience professionnelle distincte ou des responsabilités non vérifiées.",
+        note: "Cette page ne présente donc ni chronologie ni poste professionnel. Elle sera complétée lorsque les informations auront été confirmées et autorisées.",
+        project: "Voir la fiche HSVP Hub",
+      }
+    : {
+        label: "Experience",
+        title: "Professional details remain unconfirmed",
+        introduction:
+          "No role, employer, dates, or set of responsibilities has been confirmed for publication.",
+        heading: "Content deferred",
+        body: "The internship context documented for HSVP Hub remains part of that project record. On its own, it does not support a separate professional experience entry or unverified responsibilities.",
+        note: "This page therefore presents no timeline or professional role. It can be completed when the details are confirmed and authorized.",
+        project: "View the HSVP Hub record",
+      };
+---
+
+<PageFrame
+  lang={lang}
+  label={copy.label}
+  title={copy.title}
+  introduction={copy.introduction}
+>
+  <section class="deferred-content" aria-labelledby="experience-deferred">
+    <h2 id="experience-deferred">{copy.heading}</h2>
+    <p>{copy.body}</p>
+    <p class="page-note">{copy.note}</p>
+    <a href={lang === "fr" ? "/fr/projets/hsvp-hub/" : "/projects/hsvp-hub/"}>
+      {copy.project}
+    </a>
+  </section>
+</PageFrame>

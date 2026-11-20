@@ -1,0 +1,73 @@
+---
+import PageFrame from "./PageFrame.astro";
+
+/** @typedef {import("../../data/projects").Project} Project */
+/** @typedef {{ lang: "en" | "fr", project: Project }} Props */
+/** @type {Props} */
+const { lang, project } = Astro.props;
+const isFrench = lang === "fr";
+const content = project[lang];
+const copy = isFrench
+  ? {
+      label: "Fiche projet",
+      context: "Contexte confirmé",
+      status: "État actuel",
+      contribution: "Réalisation",
+      contributionDetail: "Projet réalisé individuellement.",
+      scopeTitle: "Informations à compléter",
+      scope:
+        "Fonctionnalités précises, technologies, contributions détaillées, résultats et éléments de preuve restent à documenter et vérifier. Aucun lien de dépôt n’est publié sans vérification et autorisation.",
+      confidentiality:
+        "Les détails opérationnels, données et captures liés au contexte hospitalier ne sont pas publiés.",
+      back: "Retour à l’index des projets",
+    }
+  : {
+      label: "Project case study",
+      context: "Confirmed context",
+      status: "Current status",
+      contribution: "Delivery",
+      contributionDetail: "Developed individually.",
+      scopeTitle: "Information to complete",
+      scope:
+        "Specific features, technologies, detailed contributions, outcomes, and evidence still need to be documented and verified. No repository link is published without verification and authorization.",
+      confidentiality:
+        "Operational details, data, and captures related to the hospital context are not published.",
+      back: "Back to the project index",
+    };
+---
+
+<PageFrame
+  lang={lang}
+  label={copy.label}
+  title={project.name}
+  introduction={content.status}
+>
+  <article class="case-study" aria-label={project.name}>
+    <p class="case-study__progress">
+      <span class="case-study__status-mark" aria-hidden="true"></span>
+      {content.status}
+    </p>
+    <dl class="case-study__facts">
+      <div>
+        <dt>{copy.context}</dt>
+        <dd>{content.context}</dd>
+      </div>
+      <div>
+        <dt>{copy.status}</dt>
+        <dd>{content.progress}</dd>
+      </div>
+      <div>
+        <dt>{copy.contribution}</dt>
+        <dd>{copy.contributionDetail}</dd>
+      </div>
+    </dl>
+    <section class="case-study__pending" aria-labelledby="case-study-pending">
+      <h2 id="case-study-pending">{copy.scopeTitle}</h2>
+      <p>{copy.scope}</p>
+      {project.slug === "hsvp-hub" && <p>{copy.confidentiality}</p>}
+    </section>
+    <a class="case-study__back" href={isFrench ? "/fr/projets/" : "/projects/"}>
+      {copy.back}
+    </a>
+  </article>
+</PageFrame>

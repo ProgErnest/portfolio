@@ -1,0 +1,70 @@
+---
+import PageFrame from "./PageFrame.astro";
+
+/** @typedef {{ lang: "en" | "fr" }} Props */
+/** @type {Props} */
+const { lang } = Astro.props;
+const copy =
+  lang === "fr"
+    ? {
+        label: "Compétences",
+        title: "Domaines d’intérêt et de développement",
+        introduction:
+          "Ces repères décrivent mon parcours actuel, pas des niveaux de maîtrise revendiqués.",
+        items: [
+          {
+            title: "Ingénierie logicielle",
+            text: "Mon domaine d’études et de pratique.",
+          },
+          {
+            title: "Approche orientée systèmes",
+            text: "Une perspective qui guide le développement de mes projets.",
+          },
+          {
+            title: "Architecture des systèmes et leadership technique",
+            text: "Des directions vers lesquelles je développe progressivement ma pratique.",
+          },
+        ],
+        note: "Aucune liste de technologies ni aucun niveau de compétence n’est publié : ces éléments doivent encore être confirmés.",
+      }
+    : {
+        label: "Skills",
+        title: "Areas of focus and development",
+        introduction:
+          "These describe my current path, not claimed levels of proficiency.",
+        items: [
+          {
+            title: "Software engineering",
+            text: "My field of study and practice.",
+          },
+          {
+            title: "Systems-oriented thinking",
+            text: "A perspective guiding how I develop my projects.",
+          },
+          {
+            title: "Systems architecture and technical leadership",
+            text: "Directions toward which I’m progressively developing my practice.",
+          },
+        ],
+        note: "No technology list or proficiency level is published; these details still need confirmation.",
+      };
+---
+
+<PageFrame
+  lang={lang}
+  label={copy.label}
+  title={copy.title}
+  introduction={copy.introduction}
+>
+  <section class="skill-record" aria-label={copy.label}>
+    <ul class="skill-record__list">
+      {copy.items.map((item) => (
+        <li>
+          <h2>{item.title}</h2>
+          <p>{item.text}</p>
+        </li>
+      ))}
+    </ul>
+    <p class="page-note">{copy.note}</p>
+  </section>
+</PageFrame>

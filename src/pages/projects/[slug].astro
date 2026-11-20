@@ -1,0 +1,22 @@
+---
+import ProjectCaseStudy from "../../components/pages/ProjectCaseStudy.astro";
+import Layout from "../../layouts/Layout.astro";
+import { getProject, projects } from "../../data/projects";
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug } }));
+}
+
+const project = getProject(Astro.params.slug ?? "");
+
+if (!project) {
+  throw new Error(`Unknown project slug: ${Astro.params.slug ?? "(empty)"}`);
+}
+---
+
+<Layout
+  title={`${project.name} — Ernest Programmer`}
+  description={`${project.name}: verified project context and current status.`}
+>
+  <ProjectCaseStudy lang="en" project={project} />
+</Layout>

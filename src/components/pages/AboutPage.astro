@@ -1,0 +1,77 @@
+---
+import PageFrame from "./PageFrame.astro";
+
+/** @typedef {{ lang: "en" | "fr" }} Props */
+/** @type {Props} */
+const { lang } = Astro.props;
+const isFrench = lang === "fr";
+const copy = isFrench
+  ? {
+      label: "À propos",
+      title: "Une pratique d’ingénierie en construction",
+      introduction:
+        "Étudiant et praticien en ingénierie logicielle, je développe ma pratique vers l’architecture des systèmes et le leadership technique.",
+      focusTitle: "Une direction, pas un titre revendiqué",
+      focus:
+        "Ce portfolio documente un parcours en cours. Il ne présente pas Ernest comme architecte logiciel confirmé ni comme spécialiste senior.",
+      workTitle: "Des projets individuels, décrits avec précision",
+      work: "Les projets présentés ont été réalisés individuellement. Les pages distinguent les statuts vérifiés des informations qui restent à confirmer.",
+      nextTitle: "Explorer le travail",
+      next: "Consultez l’index des projets et leurs statuts documentés, ou les domaines d’intérêt et de développement.",
+      projects: "Voir les projets",
+      skills: "Voir les compétences",
+    }
+  : {
+      label: "About",
+      title: "An engineering practice in progress",
+      introduction:
+        "A software engineering student and practitioner, developing toward systems architecture and technical leadership.",
+      focusTitle: "A direction, not a claimed title",
+      focus:
+        "This portfolio documents a work in progress. It does not present Ernest as an established software architect or senior specialist.",
+      workTitle: "Individual projects, described precisely",
+      work: "The projects shown here were completed individually. Their pages distinguish verified status from information that still needs confirmation.",
+      nextTitle: "Explore the work",
+      next: "Browse the project index and documented status, or the current areas of focus and development.",
+      projects: "View projects",
+      skills: "View skills",
+    };
+---
+
+<PageFrame
+  lang={lang}
+  label={copy.label}
+  title={copy.title}
+  introduction={copy.introduction}
+>
+  <section class="page-section page-split" aria-label={copy.label}>
+    <div>
+      <h2>{copy.focusTitle}</h2>
+      <p>{copy.focus}</p>
+    </div>
+    <div>
+      <h2>{copy.workTitle}</h2>
+      <p>{copy.work}</p>
+    </div>
+  </section>
+  <section class="page-section page-next" aria-labelledby="about-next">
+    <div>
+      <h2 id="about-next">{copy.nextTitle}</h2>
+      <p>{copy.next}</p>
+    </div>
+    <nav class="page-actions" aria-label={copy.nextTitle}>
+      <a
+        class="button button--primary"
+        href={isFrench ? "/fr/projets/" : "/projects/"}
+      >
+        {copy.projects}
+      </a>
+      <a
+        class="button button--secondary"
+        href={isFrench ? "/fr/competences/" : "/skills/"}
+      >
+        {copy.skills}
+      </a>
+    </nav>
+  </section>
+</PageFrame>

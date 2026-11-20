@@ -1,0 +1,37 @@
+---
+import PageFrame from "./PageFrame.astro";
+
+/** @typedef {{ lang: "en" | "fr" }} Props */
+/** @type {Props} */
+const { lang } = Astro.props;
+const copy =
+  lang === "fr"
+    ? {
+        label: "Contact",
+        title: "Aucun canal public confirmé pour le moment",
+        introduction:
+          "Cette page sera complétée lorsqu’une adresse ou un canal de contact aura été confirmé pour publication.",
+        heading: "Contact différé",
+        body: "Aucune adresse e-mail, aucun réseau social ni formulaire n’est publié tant que le canal et son autorisation ne sont pas confirmés.",
+      }
+    : {
+        label: "Contact",
+        title: "No public contact channel confirmed yet",
+        introduction:
+          "This page will be completed when a contact address or channel has been confirmed for publication.",
+        heading: "Contact details deferred",
+        body: "No email address, social profile, or form is published until the channel and its authorization are confirmed.",
+      };
+---
+
+<PageFrame
+  lang={lang}
+  label={copy.label}
+  title={copy.title}
+  introduction={copy.introduction}
+>
+  <section class="deferred-content" aria-labelledby="contact-deferred">
+    <h2 id="contact-deferred">{copy.heading}</h2>
+    <p>{copy.body}</p>
+  </section>
+</PageFrame>

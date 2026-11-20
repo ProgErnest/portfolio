@@ -39,16 +39,16 @@ Statuses: `TODO`, `IN_PROGRESS`, `BLOCKED`, `DONE`. Update this file as work pro
 - [x] Complete French home page with equivalent EN/FR navigation.
 
 ## G4 — Internal pages
-- [ ] About.
-- [ ] Projects index and filters.
-- [ ] Reusable project case-study template.
-- [ ] HSVP Hub case study.
-- [ ] JED case study.
-- [ ] Auction Bids case study.
-- [ ] Library Management case study.
-- [ ] Skills.
-- [ ] Experience.
-- [ ] Contact.
+- [x] About (bilingual; limited to verified positioning information).
+- [x] Projects index and keyboard-operable CSS filters.
+- [x] Reusable bilingual project case-study template with explicit evidence gaps.
+- [x] HSVP Hub case study (verified status only; hospital details withheld).
+- [x] JED case study (testing and acceptance remain pending).
+- [x] Auction Bids case study (partial status and reconstruction only).
+- [x] Library Management case study (V1 status and improvement areas only).
+- [x] Skills (focus areas only; no unverified technologies or proficiency claims).
+- [x] Experience (route and bilingual explanatory page created; professional details deferred until verified).
+- [x] Contact (route and bilingual explanatory page created; public channels deferred until confirmed).
 
 ## G5 — Content and evidence
 - [ ] Collect and verify project screenshots.

@@ -1,0 +1,16 @@
+---
+import "../../styles/internal-pages.css";
+
+/** @typedef {{ lang: "en" | "fr", label: string, title: string, introduction: string }} Props */
+/** @type {Props} */
+const { title, label, introduction } = Astro.props;
+---
+
+<main class="internal-page" aria-labelledby="page-title">
+  <header class="page-heading">
+    <p class="page-heading__label">{label}</p>
+    <h1 id="page-title">{title}</h1>
+    <p class="page-heading__introduction">{introduction}</p>
+  </header>
+  <slot />
+</main>

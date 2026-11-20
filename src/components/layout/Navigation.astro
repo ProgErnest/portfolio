@@ -1,11 +1,11 @@
 ---
 import ThemeToggle from "../ui/ThemeToggle.astro";
+import { getLocalizedPath, pageRoutes } from "../../data/routes";
 
 /** @typedef {{ lang?: "en" | "fr", currentPath?: string }} Props */
 /** @type {Props} */
 const { lang = "en", currentPath = "/" } = Astro.props;
 const isFrench = lang === "fr";
-
 const copy = isFrench
   ? {
       brand: "Ernest Programmer, accueil",
@@ -19,9 +19,8 @@ const copy = isFrench
       skills: "Compétences",
       experience: "Expérience",
       contact: "Contact",
-      planned: "Prévu",
-      unavailable: "La version dans cette langue n’est pas encore disponible.",
       switchToEnglish: "Passer à l’anglais",
+      language: "EN",
     }
   : {
       brand: "Ernest Programmer, home",
@@ -35,35 +34,55 @@ const copy = isFrench
       skills: "Skills",
       experience: "Experience",
       contact: "Contact",
-      planned: "Planned",
-      unavailable: "A version in this language is not available yet.",
       switchToFrench: "Switch to French",
+      language: "FR",
     };
 
-const languagePath =
-  currentPath === "/"
-    ? "/fr/"
-    : currentPath === "/fr/"
-      ? "/"
-      : currentPath === "/design-system/"
-        ? "/fr/design-system/"
-        : currentPath === "/fr/design-system/"
-          ? "/design-system/"
-          : null;
 const languageCode = isFrench ? "en" : "fr";
+const languagePath = getLocalizedPath(currentPath, languageCode);
 const languageLabel = isFrench ? copy.switchToEnglish : copy.switchToFrench;
-const homePath = isFrench ? "/fr/" : "/";
+/** @param {{ en: string; fr: string }} routes */
+const homePath = isFrench ? pageRoutes.home.fr : pageRoutes.home.en;
 const items = [
   {
     label: copy.home,
     href: homePath,
     current: currentPath === "/" || currentPath === "/fr/",
   },
-  { label: copy.about },
-  { label: copy.projects },
-  { label: copy.skills },
-  { label: copy.experience },
-  { label: copy.contact },
+  {
+    label: copy.about,
+    href: isFrench ? pageRoutes.about.fr : pageRoutes.about.en,
+    current:
+      currentPath === (isFrench ? pageRoutes.about.fr : pageRoutes.about.en),
+  },
+  {
+    label: copy.projects,
+    href: isFrench ? pageRoutes.projects.fr : pageRoutes.projects.en,
+    current:
+      currentPath ===
+        (isFrench ? pageRoutes.projects.fr : pageRoutes.projects.en) ||
+      currentPath.startsWith(isFrench ? "/fr/projets/" : "/projects/"),
+  },
+  {
+    label: copy.skills,
+    href: isFrench ? pageRoutes.skills.fr : pageRoutes.skills.en,
+    current:
+      currentPath === (isFrench ? pageRoutes.skills.fr : pageRoutes.skills.en),
+  },
+  {
+    label: copy.experience,
+    href: isFrench ? pageRoutes.experience.fr : pageRoutes.experience.en,
+    current:
+      currentPath ===
+      (isFrench ? pageRoutes.experience.fr : pageRoutes.experience.en),
+  },
+  {
+    label: copy.contact,
+    href: isFrench ? pageRoutes.contact.fr : pageRoutes.contact.en,
+    current:
+      currentPath ===
+      (isFrench ? pageRoutes.contact.fr : pageRoutes.contact.en),
+  },
 ];
 ---
 
@@ -104,20 +123,13 @@ const items = [
       <ul class="primary-navigation__list">
         {items.map((item) => (
           <li>
-            {item.href ? (
-              <a
-                class="primary-navigation__link"
-                href={item.href}
-                aria-current={item.current ? "page" : undefined}
-              >
-                {item.label}
-              </a>
-            ) : (
-              <span class="primary-navigation__unavailable">
-                <span>{item.label}</span>
-                <small>{copy.planned}</small>
-              </span>
-            )}
+            <a
+              class="primary-navigation__link"
+              href={item.href}
+              aria-current={item.current ? "page" : undefined}
+            >
+              {item.label}
+            </a>
           </li>
         ))}
       </ul>
@@ -133,17 +145,17 @@ const items = [
         aria-label={languageLabel}
         title={languageLabel}
       >
-        <span aria-hidden="true">{languageCode.toUpperCase()}</span>
+        <span aria-hidden="true">{copy.language}</span>
       </a>
     ) : (
       <button
         class="language-switch language-switch--unavailable"
         type="button"
         disabled
-        aria-label={copy.unavailable}
-        title={copy.unavailable}
+        aria-label={isFrench ? copy.switchToEnglish : copy.switchToFrench}
+        title={isFrench ? copy.switchToEnglish : copy.switchToFrench}
       >
-        <span aria-hidden="true">{languageCode.toUpperCase()}</span>
+        <span aria-hidden="true">{copy.language}</span>
       </button>
     )}
     <ThemeToggle lang={lang} />

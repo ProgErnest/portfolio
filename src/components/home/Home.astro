@@ -1,6 +1,7 @@
 ---
 import Badge from "../ui/Badge.astro";
 import Button from "../ui/Button.astro";
+import { getProjectPath } from "../../data/projects";
 
 /** @typedef {{ lang?: "en" | "fr" }} Props */
 /** @type {Props} */
@@ -28,24 +29,28 @@ const copy = isFrench
       projects: [
         {
           name: "HSVP Hub",
+          slug: "hsvp-hub",
           status: "V1.0 fonctionnelle · V2.0 en refonte",
           description:
             "Projet universitaire développé progressivement dans un contexte de stage et soutenu académiquement. La V1.0 est fonctionnelle ; la refonte et le refactor de la V2.0 sont en cours.",
         },
         {
           name: "JED",
+          slug: "jed",
           status: "Tests et acceptation en attente",
           description:
             "L’implémentation du projet client est terminée. Les tests et l’acceptation par le client restent à venir.",
         },
         {
           name: "Auction Bids",
+          slug: "auction-bids",
           status: "Reconstruction en cours",
           description:
             "Projet personnel partiellement fonctionnel, actuellement en reconstruction.",
         },
         {
           name: "Library Management",
+          slug: "library-management",
           status: "V1 fonctionnelle",
           description:
             "La V1 est fonctionnelle ; les workflows et l’expérience utilisateur restent à améliorer.",
@@ -79,8 +84,8 @@ const copy = isFrench
       contactLabel: "Contact",
       contactTitle: "Restons en contact",
       contactBody:
-        "Aucun canal de contact public n’a encore été confirmé pour ce portfolio. La page Contact dédiée sera ajoutée lors d’une phase ultérieure.",
-      planned: "Prévu dans une phase ultérieure",
+        "Aucun canal de contact public n’a encore été confirmé. Cette page précise les éléments qui restent à confirmer.",
+      planned: "Détails publics différés",
       projectListLabel: "Projets sélectionnés et statuts",
       skillsListLabel: "Domaines d’intérêt et de développement",
     }
@@ -104,24 +109,28 @@ const copy = isFrench
       projects: [
         {
           name: "HSVP Hub",
+          slug: "hsvp-hub",
           status: "V1.0 functional · V2.0 in redesign",
           description:
             "A university project developed progressively in an internship context and defended academically. V1.0 is functional; the V2.0 redesign and refactor are in progress.",
         },
         {
           name: "JED",
+          slug: "jed",
           status: "Testing and acceptance pending",
           description:
             "Implementation of this client project is complete. Client testing and acceptance are still pending.",
         },
         {
           name: "Auction Bids",
+          slug: "auction-bids",
           status: "Reconstruction in progress",
           description:
             "A personal project with partial functionality, currently under reconstruction.",
         },
         {
           name: "Library Management",
+          slug: "library-management",
           status: "V1 functional",
           description:
             "V1 is functional; workflows and user experience still need improvement.",
@@ -153,8 +162,8 @@ const copy = isFrench
       contactLabel: "Contact",
       contactTitle: "Get in touch",
       contactBody:
-        "No public contact channel has been confirmed for this portfolio yet. A dedicated Contact page will be added in a later phase.",
-      planned: "Planned for a later phase",
+        "No public contact channel has been confirmed for this portfolio yet. This page explains what remains unconfirmed.",
+      planned: "Public details deferred",
       projectListLabel: "Selected projects and statuses",
       skillsListLabel: "Areas of focus and development",
     };
@@ -167,8 +176,13 @@ const copy = isFrench
       <h1 id="home-title">{copy.title}</h1>
       <p class="home-hero__introduction">{copy.introduction}</p>
       <div class="home-hero__actions">
-        <Button href="#projects">{copy.projectsAction}</Button>
-        <Button href="#contact" variant="secondary">
+        <Button href={lang === "fr" ? "/fr/projets/" : "/projects/"}>
+          {copy.projectsAction}
+        </Button>
+        <Button
+          href={lang === "fr" ? "/fr/contact/" : "/contact/"}
+          variant="secondary"
+        >
           {copy.contactAction}
         </Button>
       </div>
@@ -192,7 +206,10 @@ const copy = isFrench
     </div>
     <div class="home-section__body">
       <p>{copy.aboutBody}</p>
-      <a class="home-text-link" href="#skills">
+      <a
+        class="home-text-link"
+        href={lang === "fr" ? "/fr/competences/" : "/skills/"}
+      >
         {copy.aboutAction}
       </a>
     </div>
@@ -213,7 +230,9 @@ const copy = isFrench
       {copy.projects.map((project) => (
         <li class="home-project">
           <div class="home-project__title">
-            <h3>{project.name}</h3>
+            <h3>
+              <a href={getProjectPath(project.slug, lang)}>{project.name}</a>
+            </h3>
             <Badge>{project.status}</Badge>
           </div>
           <p>{project.description}</p>

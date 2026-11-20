@@ -1,0 +1,125 @@
+---
+import PageFrame from "./PageFrame.astro";
+import { getProjectPath, projects } from "../../data/projects";
+
+/** @typedef {{ lang: "en" | "fr" }} Props */
+/** @type {Props} */
+const { lang } = Astro.props;
+const isFrench = lang === "fr";
+/** @type {"en" | "fr"} */
+const projectLanguage = isFrench ? "fr" : "en";
+const copy = isFrench
+  ? {
+      label: "Projets",
+      title: "Un index de travail en cours",
+      introduction:
+        "Quatre projets individuels, avec des statuts vérifiés. Les informations non confirmées et les détails confidentiels ne sont pas publiés.",
+      filters: "Filtrer les projets par statut",
+      all: "Tous",
+      active: "En cours",
+      pending: "Tests en attente",
+      functional: "Version fonctionnelle",
+      open: "Lire le statut confirmé",
+      groupNames: {
+        active: "En cours",
+        pending: "Tests en attente",
+        functional: "Fonctionnel",
+      },
+    }
+  : {
+      label: "Projects",
+      title: "An index of work in progress",
+      introduction:
+        "Four individual projects, with verified status. Unconfirmed details and confidential information are not published.",
+      filters: "Filter projects by status",
+      all: "All",
+      active: "In progress",
+      pending: "Testing pending",
+      functional: "Functional version",
+      open: "Read the confirmed status",
+      groupNames: {
+        active: "In progress",
+        pending: "Testing pending",
+        functional: "Functional",
+      },
+    };
+---
+
+<PageFrame
+  lang={lang}
+  label={copy.label}
+  title={copy.title}
+  introduction={copy.introduction}
+>
+  <section class="projects-index" aria-label={copy.label}>
+    <fieldset class="project-filters">
+      <legend>{copy.filters}</legend>
+      <label class="project-filter">
+        <input
+          class="project-filter__input"
+          type="radio"
+          name="project-status"
+          value="all"
+          checked
+        />
+        <span>{copy.all}</span>
+      </label>
+      <label class="project-filter">
+        <input
+          class="project-filter__input"
+          type="radio"
+          name="project-status"
+          value="active"
+          id="project-filter-active"
+        />
+        <span>{copy.active}</span>
+      </label>
+      <label class="project-filter">
+        <input
+          class="project-filter__input"
+          type="radio"
+          name="project-status"
+          value="pending"
+          id="project-filter-pending"
+        />
+        <span>{copy.pending}</span>
+      </label>
+      <label class="project-filter">
+        <input
+          class="project-filter__input"
+          type="radio"
+          name="project-status"
+          value="functional"
+          id="project-filter-functional"
+        />
+        <span>{copy.functional}</span>
+      </label>
+    </fieldset>
+
+    <ul class="project-index-list">
+      {projects.map((project) => {
+        const content = project[projectLanguage];
+        return (
+          <li class="project-index-item" data-status={project.statusGroup}>
+            <p class="project-index-item__status">
+              {copy.groupNames[project.statusGroup]}
+            </p>
+            <div class="project-index-item__main">
+              <h2>
+                <a href={getProjectPath(project.slug, lang)}>{project.name}</a>
+              </h2>
+              <p>{content.status}</p>
+            </div>
+            <a
+              class="project-index-item__link"
+              href={getProjectPath(project.slug, lang)}
+            >
+              {copy.open}
+              <span aria-hidden="true">↗</span>
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </section>
+</PageFrame>
