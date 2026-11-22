@@ -21,11 +21,15 @@ const copy =
             text: "Une perspective qui guide le développement de mes projets.",
           },
           {
+            title: "Développement backend et API REST",
+            text: "Expérience avec Django, CodeIgniter 4 et Symfony dans les contextes décrits sur la page Expérience.",
+          },
+          {
             title: "Architecture des systèmes et leadership technique",
             text: "Des directions vers lesquelles je développe progressivement ma pratique.",
           },
         ],
-        note: "Aucune liste de technologies ni aucun niveau de compétence n’est publié : ces éléments doivent encore être confirmés.",
+        note: "Les technologies citées reflètent uniquement les stages documentés. Aucun niveau de maîtrise n’est revendiqué.",
       }
     : {
         label: "Skills",
@@ -42,11 +46,15 @@ const copy =
             text: "A perspective guiding how I develop my projects.",
           },
           {
+            title: "Backend and REST API development",
+            text: "Experience with Django, CodeIgniter 4, and Symfony in the contexts described on the Experience page.",
+          },
+          {
             title: "Systems architecture and technical leadership",
             text: "Directions toward which I’m progressively developing my practice.",
           },
         ],
-        note: "No technology list or proficiency level is published; these details still need confirmation.",
+        note: "The technologies listed reflect only the documented internships. No proficiency level is claimed.",
       };
 ---
 
@@ -66,5 +74,11 @@ const copy =
       ))}
     </ul>
     <p class="page-note">{copy.note}</p>
+    <a
+      class="experience-entry__project"
+      href={lang === "fr" ? "/fr/experience/" : "/experience/"}
+    >
+      {lang === "fr" ? "Voir l’expérience" : "View experience"}
+    </a>
   </section>
 </PageFrame>

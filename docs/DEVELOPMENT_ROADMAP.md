@@ -46,15 +46,15 @@ Statuses: `TODO`, `IN_PROGRESS`, `BLOCKED`, `DONE`. Update this file as work pro
 - [x] JED case study (testing and acceptance remain pending).
 - [x] Auction Bids case study (partial status and reconstruction only).
 - [x] Library Management case study (V1 status and improvement areas only).
-- [x] Skills (focus areas only; no unverified technologies or proficiency claims).
-- [x] Experience (route and bilingual explanatory page created; professional details deferred until verified).
-- [x] Contact (route and bilingual explanatory page created; public channels deferred until confirmed).
+- [x] Skills (focus areas and technologies supported by confirmed internship details; no unverified proficiency claims).
+- [x] Experience (bilingual; internship details confirmed by the owner; HSVP Hub scope withheld).
+- [x] Contact (bilingual; public contact channels provided by the owner).
 
 ## G5 — Content and evidence
 - [ ] Collect and verify project screenshots.
-- [ ] Verify public repository links.
-- [ ] Confirm technologies and feature claims.
-- [ ] Collect professional experience details when needed.
+- [ ] Verify public repository links and obtain publication authorization (JED, Auction Bids and Library Management authorized; links verified).
+- [ ] Confirm technologies and feature claims (JED, Auction Bids and Library Management partially verified; HSVP backend remains to confirm).
+- [ ] Collect professional experience details when needed (completed during G4).
 - [ ] Complete and review French content.
 - [ ] Remove placeholders before launch.
 

@@ -8,23 +8,51 @@ const copy =
   lang === "fr"
     ? {
         label: "Expérience",
-        title: "Les détails professionnels restent à confirmer",
+        title: "Une expérience en apprentissage et en développement backend",
         introduction:
-          "Aucun rôle, employeur, date ou ensemble de responsabilités n’a été confirmé pour publication.",
-        heading: "Contenu différé",
-        body: "Le contexte de stage documenté pour HSVP Hub reste attaché à la fiche du projet. Il ne permet pas, à lui seul, de publier une expérience professionnelle distincte ou des responsabilités non vérifiées.",
-        note: "Cette page ne présente donc ni chronologie ni poste professionnel. Elle sera complétée lorsque les informations auront été confirmées et autorisées.",
-        project: "Voir la fiche HSVP Hub",
+          "Deux stages documentés, présentés à partir des informations confirmées pour publication.",
+        academic: "Stage académique",
+        professional: "Stage professionnel",
+        backendIntern: "Stagiaire backend",
+        intern: "Stagiaire",
+        academicStart: "30 juin 2026",
+        academicEnd: "30 septembre 2026",
+        professionalStart: "Juin 2025",
+        professionalEnd: "Août 2025",
+        hooyiaTasks: [
+          "Apprentissage de Django, principalement de ses aspects backend.",
+          "Mise en pratique des connaissances dans un mini-projet.",
+          "Développement progressif du projet de soutenance HSVP-Hub, soutenu académiquement.",
+        ],
+        devcodeTasks: [
+          "Développement backend et d’API REST sur des projets de l’entreprise.",
+          "Utilisation de CodeIgniter 4 et Symfony dans ce contexte.",
+        ],
+        project: "Voir le contexte HSVP-Hub",
       }
     : {
         label: "Experience",
-        title: "Professional details remain unconfirmed",
+        title: "Experience in learning and backend development",
         introduction:
-          "No role, employer, dates, or set of responsibilities has been confirmed for publication.",
-        heading: "Content deferred",
-        body: "The internship context documented for HSVP Hub remains part of that project record. On its own, it does not support a separate professional experience entry or unverified responsibilities.",
-        note: "This page therefore presents no timeline or professional role. It can be completed when the details are confirmed and authorized.",
-        project: "View the HSVP Hub record",
+          "Two documented internships, described using information confirmed for publication.",
+        academic: "Academic internship",
+        professional: "Professional internship",
+        backendIntern: "Backend intern",
+        intern: "Intern",
+        academicStart: "June 30, 2026",
+        academicEnd: "September 30, 2026",
+        professionalStart: "June 2025",
+        professionalEnd: "August 2025",
+        hooyiaTasks: [
+          "Learning Django, primarily its backend aspects.",
+          "Applying that learning in a mini-project.",
+          "Progressively developing the HSVP-Hub academic capstone project.",
+        ],
+        devcodeTasks: [
+          "Backend and REST API development on company projects.",
+          "Using CodeIgniter 4 and Symfony in that context.",
+        ],
+        project: "View the HSVP-Hub context",
       };
 ---
 
@@ -34,12 +62,52 @@ const copy =
   title={copy.title}
   introduction={copy.introduction}
 >
-  <section class="deferred-content" aria-labelledby="experience-deferred">
-    <h2 id="experience-deferred">{copy.heading}</h2>
-    <p>{copy.body}</p>
-    <p class="page-note">{copy.note}</p>
-    <a href={lang === "fr" ? "/fr/projets/hsvp-hub/" : "/projects/hsvp-hub/"}>
-      {copy.project}
-    </a>
-  </section>
+  <ol class="experience-list" aria-label={copy.label}>
+    <li class="experience-entry">
+      <div class="experience-entry__meta">
+        <p>{copy.academic}</p>
+        <p>
+          <time datetime="2026-06-30">{copy.academicStart}</time>
+          {" – "}
+          <time datetime="2026-09-30">{copy.academicEnd}</time>
+        </p>
+      </div>
+      <div class="experience-entry__content">
+        <h2>{copy.backendIntern}</h2>
+        <p class="experience-entry__organization">
+          <a href="https://hooyia.net/en/about/">HooYia</a>
+        </p>
+        <ul>
+          {copy.hooyiaTasks.map((task) => (
+            <li>{task}</li>
+          ))}
+        </ul>
+        <a
+          class="experience-entry__project"
+          href={lang === "fr" ? "/fr/projets/hsvp-hub/" : "/projects/hsvp-hub/"}
+        >
+          {copy.project}
+        </a>
+      </div>
+    </li>
+    <li class="experience-entry">
+      <div class="experience-entry__meta">
+        <p>{copy.professional}</p>
+        <p>
+          <time datetime="2025-06">{copy.professionalStart}</time>
+          {" – "}
+          <time datetime="2025-08">{copy.professionalEnd}</time>
+        </p>
+      </div>
+      <div class="experience-entry__content">
+        <h2>{copy.intern}</h2>
+        <p class="experience-entry__organization">DevCode Camer</p>
+        <ul>
+          {copy.devcodeTasks.map((task) => (
+            <li>{task}</li>
+          ))}
+        </ul>
+      </div>
+    </li>
+  </ol>
 </PageFrame>

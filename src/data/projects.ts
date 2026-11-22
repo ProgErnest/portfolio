@@ -12,6 +12,9 @@ export type Project = {
   slug: ProjectSlug;
   name: string;
   statusGroup: ProjectStatus;
+  technologies: string[];
+  repositoryUrl?: string;
+  repositoryLabel?: string;
   en: LocalizedProject;
   fr: LocalizedProject;
 };
@@ -21,6 +24,7 @@ export const projects: Project[] = [
     slug: "hsvp-hub",
     name: "HSVP Hub",
     statusGroup: "active",
+    technologies: ["HTML", "Tailwind CSS 4", "JavaScript"],
     en: {
       status: "V1.0 functional · V2.0 redesign in progress",
       context:
@@ -40,6 +44,17 @@ export const projects: Project[] = [
     slug: "jed",
     name: "JED",
     statusGroup: "pending",
+    technologies: [
+      "Python",
+      "Django 6.1.2",
+      "PostgreSQL",
+      "SQLite",
+      "HTML",
+      "CSS",
+      "JavaScript",
+    ],
+    repositoryUrl: "https://github.com/ProgErnest/JED-app",
+    repositoryLabel: "JED-app",
     en: {
       status: "Client testing and acceptance pending",
       context: "A client project implemented individually.",
@@ -57,6 +72,9 @@ export const projects: Project[] = [
     slug: "auction-bids",
     name: "Auction Bids",
     statusGroup: "active",
+    technologies: ["PHP 8.2+", "Symfony 7.4", "API Platform", "PostgreSQL"],
+    repositoryUrl: "https://github.com/ProgErnest/auction_bids_platform",
+    repositoryLabel: "auction_bids_platform",
     en: {
       status: "Partially functional · reconstruction in progress",
       context: "A personal project developed individually.",
@@ -74,6 +92,9 @@ export const projects: Project[] = [
     slug: "library-management",
     name: "Library Management",
     statusGroup: "functional",
+    technologies: ["Django", "Python", "Celery", "Redis", "Tailwind CSS"],
+    repositoryUrl: "https://github.com/ProgErnest/library-project-django",
+    repositoryLabel: "library-project-django",
     en: {
       status: "V1 functional",
       context: "A personal project developed individually.",

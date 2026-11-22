@@ -17,9 +17,13 @@ const copy = isFrench
       scopeTitle: "Informations à compléter",
       scope:
         "Fonctionnalités précises, technologies, contributions détaillées, résultats et éléments de preuve restent à documenter et vérifier. Aucun lien de dépôt n’est publié sans vérification et autorisation.",
+      technologies: "Technologies vérifiées",
+      noTechnologies:
+        "Aucune stack technique n’est publiée pour ce projet tant qu’elle n’a pas été vérifiée.",
       confidentiality:
         "Les détails opérationnels, données et captures liés au contexte hospitalier ne sont pas publiés.",
       back: "Retour à l’index des projets",
+      repository: "Dépôt public",
     }
   : {
       label: "Project case study",
@@ -30,9 +34,13 @@ const copy = isFrench
       scopeTitle: "Information to complete",
       scope:
         "Specific features, technologies, detailed contributions, outcomes, and evidence still need to be documented and verified. No repository link is published without verification and authorization.",
+      technologies: "Verified technologies",
+      noTechnologies:
+        "No project stack is published until it has been verified.",
       confidentiality:
         "Operational details, data, and captures related to the hospital context are not published.",
       back: "Back to the project index",
+      repository: "Public repository",
     };
 ---
 
@@ -60,7 +68,22 @@ const copy = isFrench
         <dt>{copy.contribution}</dt>
         <dd>{copy.contributionDetail}</dd>
       </div>
+      {project.technologies.length > 0 && (
+        <div>
+          <dt>{copy.technologies}</dt>
+          <dd>{project.technologies.join(" · ")}</dd>
+        </div>
+      )}
     </dl>
+    {project.technologies.length === 0 && (
+      <p class="case-study__no-technology">{copy.noTechnologies}</p>
+    )}
+    {project.repositoryUrl && (
+      <p class="case-study__repository">
+        <span>{copy.repository}</span>
+        <a href={project.repositoryUrl}>{project.repositoryLabel}</a>
+      </p>
+    )}
     <section class="case-study__pending" aria-labelledby="case-study-pending">
       <h2 id="case-study-pending">{copy.scopeTitle}</h2>
       <p>{copy.scope}</p>

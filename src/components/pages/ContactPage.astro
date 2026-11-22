@@ -8,19 +8,31 @@ const copy =
   lang === "fr"
     ? {
         label: "Contact",
-        title: "Aucun canal public confirmé pour le moment",
+        title: "Contacter Ernest",
         introduction:
-          "Cette page sera complétée lorsqu’une adresse ou un canal de contact aura été confirmé pour publication.",
-        heading: "Contact différé",
-        body: "Aucune adresse e-mail, aucun réseau social ni formulaire n’est publié tant que le canal et son autorisation ne sont pas confirmés.",
+          "Choisissez le canal public qui vous convient pour prendre contact.",
+        heading: "Canaux de contact",
+        whatsapp: "WhatsApp",
+        phone: "+237 673 063 503",
+        email: "E-mail",
+        emailAddress: "joreswabo01@gmail.com",
+        facebook: "Facebook",
+        linkedin: "LinkedIn",
+        github: "GitHub",
       }
     : {
         label: "Contact",
-        title: "No public contact channel confirmed yet",
+        title: "Contact Ernest",
         introduction:
-          "This page will be completed when a contact address or channel has been confirmed for publication.",
-        heading: "Contact details deferred",
-        body: "No email address, social profile, or form is published until the channel and its authorization are confirmed.",
+          "Choose the public channel that works best for getting in touch.",
+        heading: "Contact channels",
+        whatsapp: "WhatsApp",
+        phone: "+237 673 063 503",
+        email: "Email",
+        emailAddress: "joreswabo01@gmail.com",
+        facebook: "Facebook",
+        linkedin: "LinkedIn",
+        github: "GitHub",
       };
 ---
 
@@ -30,8 +42,31 @@ const copy =
   title={copy.title}
   introduction={copy.introduction}
 >
-  <section class="deferred-content" aria-labelledby="contact-deferred">
-    <h2 id="contact-deferred">{copy.heading}</h2>
-    <p>{copy.body}</p>
+  <section class="contact-channels" aria-labelledby="contact-channels-title">
+    <h2 id="contact-channels-title">{copy.heading}</h2>
+    <ul class="contact-channel-list">
+      <li>
+        <h3>{copy.whatsapp}</h3>
+        <a href="https://wa.me/237673063503">{copy.phone}</a>
+      </li>
+      <li>
+        <h3>{copy.email}</h3>
+        <a href="mailto:joreswabo01@gmail.com">{copy.emailAddress}</a>
+      </li>
+      <li>
+        <h3>{copy.facebook}</h3>
+        <a href="https://www.facebook.com/share/1CMw7XtvfF/">{copy.facebook}</a>
+      </li>
+      <li>
+        <h3>{copy.linkedin}</h3>
+        <a href="https://www.linkedin.com/in/jores-wabo-9b8938427/">
+          {copy.linkedin}
+        </a>
+      </li>
+      <li>
+        <h3>{copy.github}</h3>
+        <a href="https://github.com/ProgErnest/">{copy.github}</a>
+      </li>
+    </ul>
   </section>
 </PageFrame>
