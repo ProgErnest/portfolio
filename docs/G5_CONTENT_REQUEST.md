@@ -15,9 +15,11 @@ ne peut pas être publiée. Écrivez alors explicitement `Aucun`, `Non applicabl
 
 - Ne transmettez aucun mot de passe, jeton, secret, donnée personnelle de tiers,
   code privé ou lien vers un dépôt privé.
-- N’envoyez aucune donnée de patient, capture d’un véritable système
-  hospitalier, information opérationnelle sensible ou détail confidentiel sur
-  HSVP Hub. Cette règle s’applique même si une capture est floutée.
+- N’envoyez aucune donnée de patient, dossier identifiable, véritable
+  identifiant, capture d’un système hospitalier réel, ni détail opérationnel
+  sensible. Pour HSVP Hub, seules les catégories de fonctionnalités et les
+  technologies explicitement communiquées et autorisées par le propriétaire
+  peuvent être publiées ; ne nommez pas l’établissement associé.
 - Pour HSVP Hub, indiquez `Aucune preuve visuelle publiable` si vous ne disposez
   pas d’un support entièrement synthétique et expressément autorisé.
 - Pour JED, ne communiquez ni identité ni détail confidentiel du client. Ne
@@ -33,12 +35,12 @@ ne peut pas être publiée. Écrivez alors explicitement `Aucun`, `Non applicabl
 
 Ne les renvoyez que si elles ont changé ou si vous souhaitez les corriger.
 
-| Projet | Faits déjà communiqués |
-|---|---|
-| HSVP Hub | Projet universitaire développé progressivement dans un contexte de stage et soutenu académiquement ; V1.0 fonctionnelle ; refonte/refactor V2.0 en cours. |
-| JED | Projet client réalisé individuellement ; implémentation terminée ; tests et acceptation client en attente. |
-| Auction Bids | Projet personnel réalisé individuellement ; partiellement fonctionnel et en reconstruction. |
-| Library Management | Projet personnel réalisé individuellement ; V1 fonctionnelle ; workflows et expérience utilisateur à améliorer. |
+| Projet             | Faits déjà communiqués                                                                                                                                                                                                                               |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| HSVP Hub           | Étude de cas académique hospitalière réalisée individuellement dans un contexte de stage et soutenue académiquement ; V1.0 fonctionnelle ; refonte/refactor V2.0 en cours vers une plateforme plus intégrée ; déploiement en production non vérifié. |
+| JED                | Projet client réalisé individuellement ; implémentation terminée et application déployée, selon la confirmation du propriétaire.                                                                                                                     |
+| Auction Bids       | Projet personnel réalisé individuellement ; partiellement fonctionnel et en reconstruction.                                                                                                                                                          |
+| Library Management | Projet personnel réalisé individuellement ; V1 fonctionnelle ; workflows et expérience utilisateur à améliorer.                                                                                                                                      |
 
 Les quatre projets ont été décrits comme réalisés individuellement. Les
 informations de stages ont déjà été reçues pour G4. Les technologies
@@ -77,9 +79,9 @@ publiée. Précisez la version et l’état afin de ne pas présenter une idée 
 une fonctionnalité réalisée.
 
 | Fonctionnalité ou affirmation exacte | Version | État actuel (fonctionnel, partiel, en cours, prévu, non vérifié) | Preuve/source | Autorisée à la publication ? |
-|---|---|---|---|---|
-|  |  |  |  | Oui / Non |
-|  |  |  |  | Oui / Non |
+| ------------------------------------ | ------- | ---------------------------------------------------------------- | ------------- | ---------------------------- |
+|                                      |         |                                                                  |               | Oui / Non                    |
+|                                      |         |                                                                  |               | Oui / Non                    |
 
 ### Technologies et responsabilités
 
@@ -87,9 +89,9 @@ N’indiquez que les technologies effectivement utilisées. Si la version est
 inconnue, écrivez `Version non confirmée`.
 
 | Technologie et version, si connue | Où/comment elle est utilisée dans ce projet | Source de vérification | Confirmée pour publication ? |
-|---|---|---|---|
-|  |  |  | Oui / Non |
-|  |  |  | Oui / Non |
+| --------------------------------- | ------------------------------------------- | ---------------------- | ---------------------------- |
+|                                   |                                             |                        | Oui / Non                    |
+|                                   |                                             |                        | Oui / Non                    |
 
 - **Votre contribution personnelle précise :**
 - **Réalisation individuelle toujours exacte pour ce projet ?**
@@ -105,9 +107,9 @@ inconnue, écrivez `Version non confirmée`.
   - [ ] Oui
   - [ ] Non — détails et preuve :
 
-N’indiquez pas de nombre d’utilisateurs, de performance, de gain, d’adoption,
-d’impact commercial ou de mise en production sans preuve vérifiable et
-autorisation de publication.
+N’indiquez pas de nombre d’utilisateurs, de performance, de gain, d’adoption
+ou d’impact commercial sans preuve vérifiable et autorisation de publication.
+Pour HSVP Hub, le déploiement en production n’est pas vérifié.
 
 ### Captures, démonstrations et autres preuves
 
@@ -116,8 +118,8 @@ visuelle est facultative : si elle n’est pas disponible ou autorisée, la fich
 peut rester textuelle.
 
 | Fichier ou URL publique | Ce que l’élément démontre | Version/date | Données sensibles retirées ou support synthétique ? | Autorisation de publication confirmée ? |
-|---|---|---|---|---|
-|  |  |  | Oui / Non / Sans objet | Oui / Non |
+| ----------------------- | ------------------------- | ------------ | --------------------------------------------------- | --------------------------------------- |
+|                         |                           |              | Oui / Non / Sans objet                              | Oui / Non                               |
 
 - **Aucune capture ou démonstration publiable :**
   - [ ] Confirmé — ne pas en demander ni en fabriquer.
@@ -157,70 +159,53 @@ explicite.
 
 ### HSVP Hub
 
-La portée hospitalière est confidentielle. Ne remplissez pas de liste de
-fonctionnalités hospitalières et ne fournissez aucune capture d’un véritable
-système, donnée, dossier ou processus opérationnel.
+Les éléments suivants ont été communiqués et autorisés le 23 novembre 2026 :
 
-- **Le statut V1.0 fonctionnelle / V2.0 en refonte reste-t-il actuel ?**
-- **Un support entièrement synthétique et expressément autorisé est-il
-  disponible ?**
-  - [ ] Oui — indiquer uniquement le fichier autorisé et ce qu’il illustre,
-    sans détail opérationnel.
-  - [ ] Non — aucune preuve visuelle à publier.
-- **Le nom HSVP Hub et le contexte universitaire/stage/soutenance restent-ils
-  autorisés à la publication ?**
-  - [ ] Oui
-  - [ ] Non — préciser ce qui doit être retiré.
+- V1.0 fonctionnelle ; refonte du socle V2.0 en cours, avec une plateforme
+  hospitalière plus intégrée comme objectif.
+- Fonctionnalités V1.0 : authentification et comptes, autorisations, dossiers
+  patients, admissions, consultations, examens, séjours, transferts
+  interservices et rendez-vous.
+- Public : personnel administratif et de réception, médecins et praticiens,
+  responsables de services, administrateurs et autres personnels hospitaliers
+  autorisés.
+- Technologies : Python 3.14, Django 6.0.7, PostgreSQL 18, Tailwind CSS 4,
+  JavaScript natif, Celery, Mailpit, WhiteNoise, Git et GitHub Actions.
+- Contribution : analyse des besoins, collecte d’informations sur le terrain,
+  conception, modélisation, développement backend/frontend, modules métier,
+  accès, tests et corrections.
+- Limites : stabilisation de V2.0, validation des nouveaux workflows, tests
+  approfondis et vérifications de sécurité, performance et déploiement réel.
 
-N’envoyez pas de détail de portée ERP, de donnée hospitalière, de capture réelle
-ou d’information opérationnelle, même pour répondre à ce formulaire.
+Ne nommez pas l’établissement associé et ne publiez ni donnée réelle, capture
+d’un système hospitalier, identifiant, résultat mesuré ou affirmation de
+déploiement en production. Aucune capture HSVP Hub n’est autorisée pour le
+portfolio dans l’état actuel des preuves.
 
 ### JED
 
-- **Le statut « implémentation terminée, tests et acceptation en attente »
-  est-il toujours exact ?**
-- **Les tests client ont-ils eu lieu ?**
-  - [ ] Non
-  - [ ] Oui — résultat publiable et preuve/autorisation :
-- **L’acceptation du client a-t-elle été donnée ?**
-  - [ ] Non
-  - [ ] Oui — date ou preuve publiable et autorisation explicite du client :
-- **Existe-t-il des captures ou une démonstration autorisées, sans information
-  confidentielle du client ?**
-  - [ ] Oui — les indiquer dans la section preuves.
-  - [ ] Non.
+L’implémentation est terminée et l’application est déployée, selon la
+confirmation du propriétaire. La fiche publie ce statut et les fonctionnalités
+confirmées. Aucun lien de dépôt, nom de client ou détail confidentiel n’est
+publié. La capture JED existante est autorisée et utilise des données fictives.
 
-Tant que les tests ou l’acceptation ne sont pas confirmés, le site conservera
-leur statut en attente.
+N’ajoutez aucun résultat mesuré, environnement de déploiement ou autre détail
+qui n’a pas été fourni.
 
 ### Auction Bids
 
-- **Le projet est-il toujours partiellement fonctionnel et en reconstruction ?**
-- **Quelles fonctionnalités fonctionnent actuellement ?** Les lister dans le
-  tableau commun avec leur version et une preuve.
-- **Quelles fonctionnalités sont encore en reconstruction ou ne fonctionnent
-  pas ?**
-- **Une capture récente ou une démonstration publique et autorisée est-elle
-  disponible ?**
-  - [ ] Oui
-  - [ ] Non.
+Le projet reste partiellement fonctionnel et en reconstruction. Le dépôt public
+et l’autorisation d’ajouter un lien ont été confirmés par le propriétaire. Le
+dépôt contient toutefois un fichier `.env.prod` à sa racine ; son contenu n’a
+pas été consulté. Ne pas ajouter le lien au portfolio avant confirmation qu’il
+est assaini ou retiré. La capture de connexion existante est autorisée et
+présente des valeurs fictives.
 
 ### Library Management
 
-- **La V1 est-elle toujours fonctionnelle ?**
-- **Quels workflows sont actuellement utilisables ?**
-- **Quelles améliorations UX/workflow sont confirmées comme restantes ?**
-- **Une capture récente ou une démonstration publique et autorisée est-elle
-  disponible ?**
-  - [ ] Oui
-  - [ ] Non.
-- **Clarification nécessaire : le mini-projet de gestion de librairie réalisé
-  pour appliquer Django pendant le stage HooYia est-il le même projet que la
-  fiche personnelle « Library Management » ?**
-  - [ ] Oui — expliquer brièvement le lien et confirmer la formulation
-    publiable.
-  - [ ] Non — ce sont deux projets distincts.
-  - [ ] À confirmer — ne pas les présenter comme un seul projet pour le moment.
+La V1 est fonctionnelle et les workflows/UX restent à améliorer. Le propriétaire
+a autorisé le lien du dépôt public `library-project-django` et la capture du
+catalogue avec des données fictives.
 
 ## Vérification des traductions EN/FR
 
@@ -228,12 +213,12 @@ Une fois les faits anglais validés, l’agent préparera la version française.
 Pour chaque projet, relisez ensuite les termes techniques, le statut et les
 phrases françaises.
 
-| Projet | Faits anglais validés ? | Version française relue ? | Corrections ou termes à conserver |
-|---|---|---|---|
-| HSVP Hub | Oui / Non | Oui / Non |  |
-| JED | Oui / Non | Oui / Non |  |
-| Auction Bids | Oui / Non | Oui / Non |  |
-| Library Management | Oui / Non | Oui / Non |  |
+| Projet             | Faits anglais validés ? | Version française relue ? | Corrections ou termes à conserver |
+| ------------------ | ----------------------- | ------------------------- | --------------------------------- |
+| HSVP Hub           | Oui / Non               | Oui / Non                 |                                   |
+| JED                | Oui / Non               | Oui / Non                 |                                   |
+| Auction Bids       | Oui / Non               | Oui / Non                 |                                   |
+| Library Management | Oui / Non               | Oui / Non                 |                                   |
 
 Les noms de projet, frameworks et identifiants de code restent inchangés si
 nécessaire. Il n’est pas nécessaire de fournir une traduction littérale :

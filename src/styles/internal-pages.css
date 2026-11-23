@@ -211,8 +211,8 @@
 
 .projects-index:has(#project-filter-active:checked)
   .project-index-item:not([data-status="active"]),
-.projects-index:has(#project-filter-pending:checked)
-  .project-index-item:not([data-status="pending"]),
+.projects-index:has(#project-filter-completed:checked)
+  .project-index-item:not([data-status="completed"]),
 .projects-index:has(#project-filter-functional:checked)
   .project-index-item:not([data-status="functional"]) {
   display: none;
@@ -263,6 +263,77 @@
   margin: 0;
 }
 
+.case-study__section {
+  max-width: 64rem;
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+}
+
+.case-study__section h2 {
+  margin: 0 0 0.8rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2vw, 1.65rem);
+  line-height: 1.2;
+}
+
+.case-study__section p {
+  max-width: 68ch;
+  margin: 0;
+}
+
+.case-study__repository {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.75rem;
+  max-width: 68ch;
+  margin: 1.25rem 0 0;
+  color: var(--text-muted);
+}
+
+.case-study__repository span {
+  font-weight: 650;
+}
+
+.case-study__evidence {
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+}
+
+.case-study__evidence h2 {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2vw, 1.65rem);
+  line-height: 1.2;
+}
+
+.case-study__figure {
+  display: grid;
+  justify-items: center;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--border-default);
+  border-radius: 0.75rem;
+  background: var(--surface-card);
+}
+
+.case-study__figure img {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  background: var(--surface-raised);
+}
+
+.case-study__figure--compact img {
+  max-width: min(100%, 22.5rem);
+}
+
+.case-study__figure figcaption {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-top: 1px solid var(--border-default);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
 .case-study__pending {
   max-width: 50rem;
   margin-top: clamp(2rem, 5vw, 3.5rem);
@@ -282,19 +353,6 @@
   padding-left: 1rem;
   border-left: 3px solid var(--accent-blue);
   color: var(--text-muted);
-}
-
-.case-study__repository {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem 0.75rem;
-  max-width: 68ch;
-  margin: 1.25rem 0 0;
-  color: var(--text-muted);
-}
-
-.case-study__repository span {
-  font-weight: 650;
 }
 
 .case-study__back {

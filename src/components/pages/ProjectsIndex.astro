@@ -11,35 +11,35 @@ const projectLanguage = isFrench ? "fr" : "en";
 const copy = isFrench
   ? {
       label: "Projets",
-      title: "Un index de travail en cours",
+      title: "Projets et état actuel",
       introduction:
         "Quatre projets individuels, avec des statuts vérifiés. Les informations non confirmées et les détails confidentiels ne sont pas publiés.",
       filters: "Filtrer les projets par statut",
       all: "Tous",
       active: "En cours",
-      pending: "Tests en attente",
+      completed: "Terminé et déployé",
       functional: "Version fonctionnelle",
       open: "Lire le statut confirmé",
       groupNames: {
         active: "En cours",
-        pending: "Tests en attente",
+        completed: "Terminé",
         functional: "Fonctionnel",
       },
     }
   : {
       label: "Projects",
-      title: "An index of work in progress",
+      title: "Projects and current status",
       introduction:
         "Four individual projects, with verified status. Unconfirmed details and confidential information are not published.",
       filters: "Filter projects by status",
       all: "All",
       active: "In progress",
-      pending: "Testing pending",
+      completed: "Completed and deployed",
       functional: "Functional version",
       open: "Read the confirmed status",
       groupNames: {
         active: "In progress",
-        pending: "Testing pending",
+        completed: "Complete",
         functional: "Functional",
       },
     };
@@ -79,10 +79,10 @@ const copy = isFrench
           class="project-filter__input"
           type="radio"
           name="project-status"
-          value="pending"
-          id="project-filter-pending"
+          value="completed"
+          id="project-filter-completed"
         />
-        <span>{copy.pending}</span>
+        <span>{copy.completed}</span>
       </label>
       <label class="project-filter">
         <input

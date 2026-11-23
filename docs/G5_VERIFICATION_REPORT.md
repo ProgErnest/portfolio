@@ -1,112 +1,118 @@
 # Rapport de vérification G5
 
-Date de vérification : 22 novembre 2026
+Date de vérification : 23 novembre 2026
 
 ## Statut
 
-Ce rapport sépare les informations vérifiables des éléments qui restent à
-autoriser ou à prouver. Il ne remplace pas une capture, une démonstration ou
-une confirmation client.
+Ce rapport sépare les faits confirmés des éléments qui restent à vérifier.
+Le propriétaire autorise les liens Auction Bids et Library Management et
+confirme que les captures sélectionnées utilisent des données fictives.
+G5 reste `IN_PROGRESS` tant que le fichier `.env.prod` du dépôt Auction Bids
+n’a pas été vérifié ou retiré.
 
-## Dépôts publics trouvés
+## Vérification et publication des liens
 
-Ces dépôts sont publics sous le compte GitHub `ProgErnest`. Leur présence ne
-signifie pas encore que leur lien peut être publié sur le portfolio : il faut
-une autorisation explicite pour chaque projet.
+Le dépôt JED n’est pas destiné à un usage public et aucun lien n’est ajouté.
+Les deux dépôts publics autorisés ont été retrouvés sous le compte `ProgErnest`
+et correspondent aux projets :
 
-| Projet | Dépôt trouvé | Vérifications réalisées |
-|---|---|---|
-| JED | [JED-app](https://github.com/ProgErnest/JED-app) | Django 6.1.2 dans `requirements.txt`; PostgreSQL documenté comme moteur par défaut; SQLite conservé comme alternative; rapport de corrections et suite de tests présents. |
-| Auction Bids | [auction_bids_platform](https://github.com/ProgErnest/auction_bids_platform) | PHP 8.2+, Symfony 7.4, API Platform et PostgreSQL 16 en Docker selon `composer.json` et `compose.yaml`. |
-| Library Management | [library-project-django](https://github.com/ProgErnest/library-project-django) | Projet Django public avec Tailwind CSS. La relation avec la fiche `Library Management` est confirmée par le propriétaire comme étant le même projet. |
-| HSVP Hub frontend | [front-end-tailwind-hsvp-hub](https://github.com/ProgErnest/front-end-tailwind-hsvp-hub) | HTML, Tailwind CSS 4 et JavaScript natif documentés pour l'interface; le dépôt ne prouve pas à lui seul un backend complet ni un déploiement hospitalier. |
-| HSVP Hub interfaces | [html-interfaces-hsvp-hms](https://github.com/ProgErnest/html-interfaces-hsvp-hms) | Ressources de conception et interfaces HTML front-end trouvées. Aucune portée backend ou opérationnelle hospitalière n'est reprise dans le portfolio. |
+| Projet             | Accès et correspondance                                                                                                                                                             | Décision                                                      |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| Auction Bids       | Public (HTTP 200), nom et correspondance vérifiés ; technologies confirmées par `composer.json`. Le fichier `.env.prod` est présent à la racine ; son contenu n’a pas été consulté. | Lien retenu jusqu’à confirmation qu’il est assaini ou retiré. |
+| Library Management | Public (HTTP 200), correspondance confirmée par le propriétaire ; dépendances vérifiées dans `requirements.txt`.                                                                    | Lien public autorisé ajouté à la fiche.                       |
 
-## Technologies publiables à ce stade
+Le dépôt Library Management est lié à
+`https://github.com/ProgErnest/library-project-django`. Le lien Auction Bids
+reste retenu malgré l’autorisation du propriétaire, par précaution face au
+fichier d’environnement publié.
 
-### JED
+## Technologies vérifiées
 
-Ces éléments sont vérifiés par les fichiers publics du dépôt :
+Les éléments ci-dessous sont présentés comme stack vérifiée dans les fiches.
+Ils ne constituent pas des revendications de fonctionnalité ou de déploiement.
 
-- Python avec Django 6.1.2.
-- PostgreSQL par défaut.
-- SQLite comme moteur alternatif/documenté.
-- HTML, CSS et JavaScript pour l'interface.
-- WhiteNoise et Gunicorn dans la configuration de dépendances.
+| Projet             | Technologies confirmées                                                                                                                                                                                                                     |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| JED                | Python, Django 6.1.2, PostgreSQL (moteur par défaut documenté), SQLite (alternative documentée), HTML, CSS, JavaScript. Les dépendances incluent également WhiteNoise et Gunicorn. L’application est déclarée déployée par le propriétaire. |
+| Auction Bids       | PHP 8.2+, Symfony 7.4, API Platform, PostgreSQL 16 dans la configuration Docker.                                                                                                                                                            |
+| Library Management | Python, Django 6.0+, Celery, Redis et Tailwind CSS. La fiche omet les versions exactes des autres composants.                                                                                                                               |
+| HSVP Hub           | Python 3.14, Django 6.0.7, PostgreSQL 18, Tailwind CSS 4, JavaScript natif, Celery, Mailpit, WhiteNoise, Git et GitHub Actions, selon la configuration technique communiquée par le propriétaire.                                           |
 
-Les tests automatiques présents dans le dépôt ne constituent pas une acceptation
-client ni une validation en production. Le site conserve donc le statut
-« implémentation terminée ; tests et acceptation client en attente ».
+Pour JED, les fonctions confirmées comme opérationnelles sont la gestion des
+ventes, des stocks, des dépenses et des rapports.
 
-### Auction Bids
+Pour HSVP Hub, le propriétaire autorise la publication des fonctionnalités
+V1.0, des groupes d’utilisateurs, de sa contribution et des limites fournis.
+La V2.0 est en refonte ; l’évolution vers une plateforme plus intégrée est un
+objectif de conception. Le déploiement en production hospitalière n’est pas
+vérifié. Aucun nom d’établissement, donnée réelle ou capture hospitalière
+n’est publié.
 
-Ces éléments sont vérifiés par les fichiers publics du dépôt :
+## Captures et preuves publiables
 
-- PHP 8.2 ou supérieur.
-- Symfony 7.4.
-- API Platform.
-- PostgreSQL via Docker.
+L’inventaire local comporte 56 fichiers : 37 HSVP Hub, 6 JED, 8 Auction Bids
+et 5 Library Management. Trois captures autorisées sont copiées sans
+modification dans `public/images/projects/` :
 
-La reprise exacte des fonctionnalités dans la reconstruction reste non vérifiée.
-Le projet reste présenté comme en reconstruction.
+- JED — tableau des indicateurs de la boutique (`1920×2300`) ; la légende
+  précise que noms et montants sont fictifs, et non des résultats du projet.
+- Auction Bids — écran de connexion BidSphere (`360×760`) ; aucun identifiant
+  de compte ni donnée personnelle n’est inclus.
+- Library Management — catalogue de livres (`1920×910`) ; la légende précise
+  que le compte et les données de disponibilité sont fictifs.
 
-### HSVP Hub
+Aucune capture HSVP Hub n’est publiée. L’écran de connexion examiné expose
+l’institution et des libellés de processus hospitaliers ; les données fictives
+des autres captures n’autorisent pas la publication de cet écran.
 
-Les dépôts publics vérifient seulement une partie frontend :
+Preuves textuelles publiables : les statuts et informations confirmés par le
+propriétaire, les technologies vérifiées ci-dessus, les fonctionnalités listées
+sur les fiches et le déploiement déclaré de JED. Aucun résultat chiffré ni
+déploiement hospitalier HSVP Hub n’est revendiqué.
 
-- HTML.
-- Tailwind CSS 4.
-- JavaScript natif.
+## Contenu et traductions vérifiés
 
-Les références publiées dans le texte fourni ne peuvent pas établir seules un
-backend Python/Django, une base PostgreSQL ou un déploiement. Elles ne doivent
-pas être publiées sans vérification du dépôt backend ou d'une configuration
-autorisée.
+- HSVP Hub : V1.0 fonctionnelle ; refonte/refactor V2.0 en cours, avec une
+  plateforme plus intégrée comme objectif. Les fonctionnalités, utilisateurs,
+  contribution, limites et technologies sont présentés en EN/FR sans nommer
+  l’établissement ni publier de capture hospitalière.
+- JED : implémentation terminée et application déployée selon le propriétaire ;
+  ventes, stocks, dépenses et rapports fonctionnels. Aucun lien de dépôt n’est
+  ajouté.
+- Auction Bids : partiellement fonctionnel et en reconstruction dans les deux
+  langues.
+- Library Management : V1 fonctionnelle ; workflows et UX à améliorer dans les
+  deux langues.
+- Les noms de projets et technologies restent inchangés. Chaque fiche est
+  accessible sous sa route EN et sa route FR correspondante.
+- Les informations restantes apparaissent dans une section localisée
+  « Information to complete / Information à compléter », et non comme
+  placeholders vides.
 
-Les données, captures réelles, utilisateurs, processus et détails ERP
-hospitaliers restent exclus.
+## Contrôles exécutés
 
-### Library Management
+- `npm run format:check` : réussi.
+- `npm run lint` : réussi.
+- `npm run check` : réussi ; 0 erreur, 0 warning, 30 indications de
+  modernisation JSDoc.
+- `npm run build` : réussi ; 22 routes statiques générées.
+- Vérification du HTML généré : les quatre fiches EN/FR et les deux index
+  existent, les statuts, technologies et sections d’informations à compléter
+  sont présents, le lien Library Management est rendu, aucun lien JED ou
+  Auction Bids n’est rendu et `docs/Captures/` n’est pas inclus dans la sortie
+  de production.
+- Revue navigateur des huit routes de fiches EN/FR : statuts et technologies
+  cohérents, équivalents de langue accessibles, captures chargées et légendes
+  présentes.
+- Contrôle responsive ciblé : affichage bureau sur les fiches avec capture,
+  puis formats mobile (390 px) et tablette (768 px) sur Library Management ;
+  aucun débordement horizontal constaté.
+- Thèmes sombre et clair vérifiés sur une fiche ; la navigation clavier place
+  le focus visible sur le lien « Aller au contenu / Skip to content ».
+- La revue responsive, d’accessibilité et de confidentialité complète de
+  l’ensemble du site reste à réaliser en G6.
 
-Le dépôt nommé `library-project-django` correspond à la fiche
-`Library Management`, selon la confirmation du propriétaire. Le dépôt vérifie
-Django, Python, Celery, Redis et Tailwind CSS. La liste précise des workflows
-restant à améliorer nécessite encore une vérification visuelle ou technique.
+## Blocages avant clôture G5
 
-## Informations reçues mais non encore publiables
-
-- Fonctionnalités détaillées de JED : la réponse fournie décrit trois activités,
-  les ventes, stocks, dépenses et rapports. Le dépôt confirme une partie de ces
-  éléments, mais les tests client et l'acceptation restent indépendants.
-- Résultats chiffrés : aucune métrique d'exploitation ou impact financier ne
-  doit être publiée à partir d'exemples de test.
-- Offline, paiements Mobile Money et déploiement Render : non vérifiés et
-  maintenus hors des fiches.
-- Captures HSVP Hub : aucune capture réelle n'a été vérifiée ou autorisée.
-- Captures JED, Auction Bids et Library Management : aucune capture récente
-  vérifiée n'a été fournie.
-- Déploiements publics : aucun état de production ne doit être revendiqué sans
-  preuve vérifiable.
-
-## Contenu déjà intégré au portfolio
-
-La page de fiche projet affiche désormais les technologies vérifiées dans les
-fichiers publics. Les règles suivantes restent actives :
-
-- Les liens JED, Auction Bids et Library Management sont publiés uniquement
-  après leur autorisation explicite.
-- Aucun résultat chiffré n'est ajouté.
-- Aucun détail confidentiel HSVP Hub n'est ajouté.
-- JED conserve son statut de tests et acceptation en attente.
-- Auction Bids conserve son statut de reconstruction.
-- Library Management conserve son statut de V1 fonctionnelle sans stack
-  attribuée.
-
-## Autorisations nécessaires avant G5
-
-Pour ajouter les liens, captures ou démonstrations publiques, confirmez :
-
-1. Quelles captures peuvent être publiées et si elles ont été anonymisées.
-2. Quelle démonstration publique peut être liée, si elle existe.
-3. Pour JED, si les tests ou l'acceptation client ont été autorisés dans une
-   formulation publique.
+1. Confirmer que le fichier `.env.prod` du dépôt Auction Bids est assaini ou le
+   retirer avant d’ajouter le lien au portfolio.

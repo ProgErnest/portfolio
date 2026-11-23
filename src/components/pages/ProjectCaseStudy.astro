@@ -6,7 +6,8 @@ import PageFrame from "./PageFrame.astro";
 /** @type {Props} */
 const { lang, project } = Astro.props;
 const isFrench = lang === "fr";
-const content = project[lang];
+const content = isFrench ? project.fr : project.en;
+const screenshot = project.screenshot;
 const copy = isFrench
   ? {
       label: "Fiche projet",
@@ -14,16 +15,20 @@ const copy = isFrench
       status: "État actuel",
       contribution: "Réalisation",
       contributionDetail: "Projet réalisé individuellement.",
-      scopeTitle: "Informations à compléter",
-      scope:
-        "Fonctionnalités précises, technologies, contributions détaillées, résultats et éléments de preuve restent à documenter et vérifier. Aucun lien de dépôt n’est publié sans vérification et autorisation.",
+      overview: "Présentation",
+      problem: "Problème traité",
+      audience: "Public visé",
+      features: "Fonctionnalités opérationnelles",
+      contributions: "Contribution personnelle",
+      result: "Résultat",
+      limitations: "Limites et travaux restants",
+      evidenceTitle: "Captures d’interface",
+      scopeTitle: "Information à compléter",
       technologies: "Technologies vérifiées",
+      repository: "Dépôt public",
       noTechnologies:
         "Aucune stack technique n’est publiée pour ce projet tant qu’elle n’a pas été vérifiée.",
-      confidentiality:
-        "Les détails opérationnels, données et captures liés au contexte hospitalier ne sont pas publiés.",
       back: "Retour à l’index des projets",
-      repository: "Dépôt public",
     }
   : {
       label: "Project case study",
@@ -31,16 +36,20 @@ const copy = isFrench
       status: "Current status",
       contribution: "Delivery",
       contributionDetail: "Developed individually.",
+      overview: "Overview",
+      problem: "Problem addressed",
+      audience: "Intended users",
+      features: "Working features",
+      contributions: "Personal contribution",
+      result: "Result",
+      limitations: "Known limitations and remaining work",
+      evidenceTitle: "Interface screenshots",
       scopeTitle: "Information to complete",
-      scope:
-        "Specific features, technologies, detailed contributions, outcomes, and evidence still need to be documented and verified. No repository link is published without verification and authorization.",
       technologies: "Verified technologies",
+      repository: "Public repository",
       noTechnologies:
         "No project stack is published until it has been verified.",
-      confidentiality:
-        "Operational details, data, and captures related to the hospital context are not published.",
       back: "Back to the project index",
-      repository: "Public repository",
     };
 ---
 
@@ -55,6 +64,12 @@ const copy = isFrench
       <span class="case-study__status-mark" aria-hidden="true"></span>
       {content.status}
     </p>
+    {content.summary && (
+      <section class="case-study__section">
+        <h2>{copy.overview}</h2>
+        <p>{content.summary}</p>
+      </section>
+    )}
     <dl class="case-study__facts">
       <div>
         <dt>{copy.context}</dt>
@@ -71,24 +86,92 @@ const copy = isFrench
       {project.technologies.length > 0 && (
         <div>
           <dt>{copy.technologies}</dt>
-          <dd>{project.technologies.join(" · ")}</dd>
+          <dd>{content.technologyNotes ?? project.technologies.join(" · ")}</dd>
         </div>
       )}
     </dl>
+    {content.problem && (
+      <section class="case-study__section">
+        <h2>{copy.problem}</h2>
+        <p>{content.problem}</p>
+      </section>
+    )}
+    {content.audience && (
+      <section class="case-study__section">
+        <h2>{copy.audience}</h2>
+        <p>{content.audience}</p>
+      </section>
+    )}
+    {content.features && (
+      <section class="case-study__section">
+        <h2>{copy.features}</h2>
+        <p>{content.features}</p>
+      </section>
+    )}
+    {content.contributions && (
+      <section class="case-study__section">
+        <h2>{copy.contributions}</h2>
+        <p>{content.contributions}</p>
+      </section>
+    )}
+    {content.result && (
+      <section class="case-study__section">
+        <h2>{copy.result}</h2>
+        <p>{content.result}</p>
+      </section>
+    )}
+    {content.limitations && (
+      <section class="case-study__pending">
+        <h2>{copy.limitations}</h2>
+        <p>{content.limitations}</p>
+        <p>{content.openItems}</p>
+      </section>
+    )}
     {project.technologies.length === 0 && (
       <p class="case-study__no-technology">{copy.noTechnologies}</p>
+    )}
+    {screenshot && (
+      <section
+        class="case-study__evidence"
+        aria-labelledby="case-study-evidence"
+      >
+        <h2 id="case-study-evidence">{copy.evidenceTitle}</h2>
+        <figure
+          class:list={[
+            "case-study__figure",
+            screenshot.width < 1000 && "case-study__figure--compact",
+          ]}
+        >
+          <img
+            src={screenshot.src}
+            width={screenshot.width}
+            height={screenshot.height}
+            alt={screenshot[lang].alt}
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>{screenshot[lang].caption}</figcaption>
+        </figure>
+      </section>
+    )}
+    {!content.limitations && (
+      <section class="case-study__pending" aria-labelledby="case-study-pending">
+        <h2 id="case-study-pending">{copy.scopeTitle}</h2>
+        <p>{content.openItems}</p>
+      </section>
     )}
     {project.repositoryUrl && (
       <p class="case-study__repository">
         <span>{copy.repository}</span>
-        <a href={project.repositoryUrl}>{project.repositoryLabel}</a>
+        <a
+          href={project.repositoryUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {project.repositoryLabel}
+        </a>
       </p>
     )}
-    <section class="case-study__pending" aria-labelledby="case-study-pending">
-      <h2 id="case-study-pending">{copy.scopeTitle}</h2>
-      <p>{copy.scope}</p>
-      {project.slug === "hsvp-hub" && <p>{copy.confidentiality}</p>}
-    </section>
     <a class="case-study__back" href={isFrench ? "/fr/projets/" : "/projects/"}>
       {copy.back}
     </a>
