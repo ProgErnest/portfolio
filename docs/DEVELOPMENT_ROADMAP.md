@@ -70,6 +70,7 @@ Statuses: `TODO`, `IN_PROGRESS`, `BLOCKED`, `DONE`. Update this file as work pro
 
 ## G6 — Quality
 
+- [x] Complete the experience and motion overhaul audit and implementation planning.
 - [ ] Unit/component tests where useful.
 - [ ] Playwright critical-path tests.
 - [ ] Responsive browser review.
