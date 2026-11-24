@@ -6,9 +6,11 @@ audit de production ni un audit de sécurité certifié.
 
 ## État du dépôt
 
-- Référentiel local : `ProgErnest/portfolio`; branche `main`, HEAD
-  `05ef729` (`Finalisation de G5`), en avance de deux commits sur
-  `origin/main`.
+- Référentiel local : `ProgErnest/portfolio`. À la vérification initiale P0,
+  HEAD était `05ef729` (`Finalisation de G5`) et la branche annonçait deux
+  commits d’avance. Au contrôle P1, HEAD et `origin/main` étaient alignés sur
+  `18592d0` (`Motion workflow`), avec le worktree propre avant les changements
+  documentaires P1.
 - Modifications préexistantes à préserver : `docs/DEVELOPMENT_ROADMAP.md`
   modifié; `docs/creative-experience-upgrade/`,
   `docs/experience-motion-overhaul/` et

@@ -30,6 +30,18 @@
   --focus-ring: #0b6ea8;
   --button-primary: #087f59;
   --button-primary-text: #ffffff;
+  --motion-instant: 80ms;
+  --motion-fast: 140ms;
+  --motion-standard: 220ms;
+  --motion-reveal: 480ms;
+  --motion-scene: 720ms;
+  --motion-long: 1100ms;
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-emphasis: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-exit: cubic-bezier(0.7, 0, 0.84, 0);
+  --motion-distance-sm: 8px;
+  --motion-distance-md: 20px;
+  --motion-scale-subtle: 1.012;
   font-family: var(--font-body);
   background: var(--surface-page);
   color: var(--text-primary);
@@ -140,6 +152,43 @@ a:hover {
   line-height: 1.2;
   text-decoration: none;
   cursor: pointer;
+  transition:
+    color var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard),
+    background-color var(--motion-fast) var(--ease-standard),
+    transform var(--motion-instant) var(--ease-standard);
+}
+
+.button:not(:disabled):active {
+  transform: translateY(1px);
+}
+
+[data-motion="reveal"] {
+  animation: motion-reveal var(--motion-reveal) var(--ease-standard) both;
+}
+
+[data-motion="evidence"] {
+  transition:
+    transform var(--motion-standard) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard);
+  will-change: transform;
+}
+
+[data-motion="evidence"]:where(:hover, :focus-within) {
+  transform: scale(var(--motion-scale-subtle));
+  border-color: var(--accent-green);
+}
+
+@keyframes motion-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-distance-md));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .button--primary {
@@ -208,5 +257,11 @@ a:hover {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  [data-motion="reveal"],
+  [data-motion="evidence"] {
+    animation: none !important;
+    transform: none !important;
   }
 }

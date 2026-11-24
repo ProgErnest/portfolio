@@ -62,9 +62,11 @@ applicatifs autorisés.
 - **Critères d’acceptation :** routes EN/FR, fallback sans JS, hooks éventuels,
   nettoyage et stratégie réduite-motion sont spécifiés; le besoin d’une
   dépendance externe est démontré ou celle-ci est écartée.
-- **Tests nécessaires :** matrice route-langue, navigation clavier, back/forward
-  si navigation améliorée, contrôle du HTML sans JavaScript.
-- **Statut initial :** En attente.
+- **Tests nécessaires :** `npm run check`, `npm run build`, inventaire de
+  dépendances, inspection de `ClientRouter`; navigation/back-forward automatisée
+  reste un gate avant P3 si le routeur est adopté.
+- **Statut après P1 :** Terminé; décision native-first, routeur intégré reporté
+  à P3, GSAP/Three non installés.
 
 ### P1-03 — Lever le blocage de publication du dépôt Auction Bids
 
@@ -109,22 +111,24 @@ applicatifs autorisés.
 
 ## P2 — Design system et Motion System
 
-### P2-01 — Réaliser un spécimen statique du langage visuel approuvé
+### P2-01 — Réaliser le spécimen bilingue des composants approuvés
 
-- **Description :** composer le motif retenu (champ, rail, preuve et signature
-  EP) dans un spécimen isolé avant généralisation.
+- **Description :** composer les 16 motifs sélectionnés dans un spécimen
+  interactif isolé avant leur intégration aux pages de production.
 - **Objectif :** éprouver la direction validée avec l’identité et les tokens
   existants.
 - **Fichiers/composants :** `src/components/DesignSystem.astro`,
-  `src/styles/global.css`, page de démonstration existante.
+  `src/components/animations/MotionSpecimen.astro`,
+  `src/styles/global.css`, `src/styles/motion-specimen.css`.
 - **Dépendances :** P1-01, P1-02.
 - **Priorité / complexité :** Moyenne / M.
-- **Critères d’acceptation :** aucune nouvelle identité ou preuve fictive;
-  thèmes clair/sombre et copies EN/FR lisibles; compositions mobile,
-  tablette et bureau documentées.
-- **Tests nécessaires :** capture/revue multi-viewport, clavier, contrastes et
-  comparaison des routes EN/FR.
-- **Statut initial :** En attente.
+- **Critères d’acceptation :** les 16 motifs sont identifiables; aucune preuve
+  fictive présentée comme réelle; thèmes clair/sombre et copies EN/FR lisibles;
+  compositions responsive sans chevauchement.
+- **Tests nécessaires :** navigateur EN/FR, bureau/tablette/mobile, clavier,
+  thème, `prefers-reduced-motion`, lint, check et build.
+- **Statut :** Terminé; spécimen ajouté sur `/design-system/` et
+  `/fr/design-system/`, sans généralisation aux pages de production.
 
 ### P2-02 — Établir les primitives de mouvement minimales
 
@@ -141,7 +145,24 @@ applicatifs autorisés.
   ajoutés; pas de bibliothèque ajoutée par défaut.
 - **Tests nécessaires :** prefers-reduced-motion, clavier/tactile, navigation
   répétée si lifecycle scripté, HTML sans JS.
-- **Statut initial :** En attente.
+- **Statut :** Terminé; tokens et primitives CSS/natives ajoutés, interactions
+  locales limitées au spécimen et aucune bibliothèque ajoutée.
+
+### P2-03 — Tracer les sélections créatives utilisateur
+
+- **Description :** consigner les composants approuvés par section à partir de
+  l’atelier interactif.
+- **Objectif :** fournir à P3/P4 une liste stable, sans invention ni
+  généralisation implicite.
+- **Fichiers/composants :** `docs/implementation-workflow/08-creative-selections.md`.
+- **Dépendances :** arbitrage humain explicite.
+- **Priorité / complexité :** Haute / S.
+- **Critères d’acceptation :** chaque identifiant retenu appartient à une
+  section exacte; les adaptations responsive, clavier et reduced-motion sont
+  explicites; aucun composant non sélectionné n’est considéré approuvé.
+- **Tests nécessaires :** revue croisée avec l’inventaire interactif.
+- **Statut :** Terminé; sélection consignée et démontrée dans le spécimen du
+  système de design, sans intégration aux pages de production.
 
 ## P3 — Expérience globale et navigation
 

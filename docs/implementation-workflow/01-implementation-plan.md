@@ -38,6 +38,11 @@ de preuves; résoudre les blocages d’accès/confidentialité pertinents.
 implicite. L’architecture réelle est déjà Astro 7 statique avec TypeScript; une
 migration n’est pas présumée nécessaire.
 
+**Résultat P1 :** architecture native-first documentée dans
+[`reports/p1-technical-architecture.md`](./reports/p1-technical-architecture.md);
+aucune dépendance ou fonctionnalité applicative ajoutée. Validation P1 en
+attente. Les décisions créatives ouvertes restent des prérequis d’entrée P2.
+
 ## P2 — Design system et Motion System
 
 **But :** traduire la composition approuvée en un spécimen statique réutilisant

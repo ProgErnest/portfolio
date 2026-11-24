@@ -22,6 +22,10 @@ autorisation explicite. Un résultat manquant ne vaut pas réussite.
 - Aucun changement architectural majeur n’est implicite.
 - Les blocages de contenu/confidentialité sont assignés ou exclus du périmètre.
 - P2 possède un plan et des critères de spécimen compréhensibles.
+- Les bibliothèques optionnelles ne sont ajoutées que si un cas concret le
+  justifie; les intégrations client différées disposent d’un gate de prototype.
+- `astro check` et le build statique passent; l’absence de prototype est
+  explicitement justifiée si aucune animation/transition n’est retenue.
 
 ### G2 — P2 Design/Motion
 

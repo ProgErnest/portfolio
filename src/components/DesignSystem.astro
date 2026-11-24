@@ -1,6 +1,7 @@
 ---
 import Badge from "./ui/Badge.astro";
 import Button from "./ui/Button.astro";
+import MotionSpecimen from "./animations/MotionSpecimen.astro";
 
 /** @typedef {{ lang?: "en" | "fr" }} Props */
 /** @type {Props} */
@@ -10,9 +11,9 @@ const isFrench = lang === "fr";
 const copy = isFrench
   ? {
       eyebrow: "Référence du système",
-      title: "Une interface claire, pensée avec rigueur.",
+      title: "Un système qui révèle ses connexions.",
       intro:
-        "Un aperçu pratique des couleurs, de la typographie et des composants du portfolio.",
+        "Couleurs, typographie et composants forment ici un vocabulaire commun. Les spécimens immersifs plus bas montrent comment ce vocabulaire s’applique à chaque partie du portfolio.",
       paletteTitle: "Couleurs et contraste",
       paletteIntro:
         "Deux palettes sémantiques. Les accents indiquent les actions et les liens ; les surfaces structurent le contenu.",
@@ -67,9 +68,9 @@ const copy = isFrench
     }
   : {
       eyebrow: "System reference",
-      title: "Clear interfaces, carefully engineered.",
+      title: "A system that reveals its connections.",
       intro:
-        "A working reference for the portfolio’s colors, typography, and interface components.",
+        "Color, typography, and components form a shared vocabulary. The immersive specimens below show how that vocabulary can shape each part of the portfolio.",
       paletteTitle: "Color and contrast",
       paletteIntro:
         "Two semantic palettes. Accents identify actions and links; surfaces organize content.",
@@ -231,6 +232,8 @@ const palettes = [
       </div>
     </section>
   </main>
+
+  <MotionSpecimen lang={lang} />
 
   <footer class="specimen__footer">{copy.footer}</footer>
 </div>

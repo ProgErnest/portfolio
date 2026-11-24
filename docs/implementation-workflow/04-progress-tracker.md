@@ -29,25 +29,41 @@ une date et des preuves observables.
 | Modifications applicatives                              | Non commencées           | Interdites dans cette mission exclusivement préparatoire.                                                                         |
 | Commit, push, déploiement                               | Non effectués            | Aucune autorisation donnée.                                                                                                       |
 
+## État P1 — 23 novembre 2026
+
+| Élément                                                  | État                     | Preuve / blocage                                                                  |
+| -------------------------------------------------------- | ------------------------ | --------------------------------------------------------------------------------- |
+| Vérification de la stack et des dépendances optionnelles | Terminé                  | `npm ls --depth=0`; GSAP, Three.js et Playwright absents.                         |
+| Architecture Astro/native-first et cycle de vie          | Terminé                  | [`reports/p1-technical-architecture.md`](./reports/p1-technical-architecture.md). |
+| Prototype GSAP/ScrollTrigger/ClientRouter/Three.js       | Différé                  | Aucun cas concret approuvé; routeur global hors P1/P3.                            |
+| Validation statique et TypeScript                        | Terminé                  | `npm run check` et `npm run build` réussis; détails dans le rapport.              |
+| Approbation du résultat P1                               | En attente de validation | P2 ne commence pas avant accord explicite.                                        |
+| Arbitrages créatifs ouverts pour P2                      | En attente               | Hero/asymétrie/preuves/premier prototype restent à confirmer.                     |
+
 ## État des phases
 
-| Phase                                   | État initial             | Condition de démarrage/sortie                                 |
-| --------------------------------------- | ------------------------ | ------------------------------------------------------------- |
-| P0 — Initialisation                     | En attente de validation | Approbation explicite du présent résultat.                    |
-| P1 — Architecture technique             | Bloqué par P0            | Arbitrages et risques humains examinés.                       |
-| P2 — Design system et Motion System     | En attente               | P1 validée; spécimen approuvé avant extension.                |
-| P3 — Expérience globale et navigation   | En attente               | P2 validée; routes/fallbacks préservés.                       |
-| P4 — Implémentation des pages           | En attente               | P3 validée; chaque preuve dispose d’une autorisation.         |
-| P5 — Expériences immersives avancées    | Conditionnel             | Bénéfice démontré; approbation dédiée si technologie lourde.  |
-| P6 — Stabilisation et assurance qualité | En attente               | Incréments choisis implémentés.                               |
-| P7 — Livraison                          | En attente               | P6 validée et approbation explicite distincte de publication. |
+| Phase                                   | État initial             | Condition de démarrage/sortie                                       |
+| --------------------------------------- | ------------------------ | ------------------------------------------------------------------- |
+| P0 — Initialisation                     | Terminé                  | La mission P1 a été lancée par l’utilisateur.                       |
+| P1 — Architecture technique             | En attente de validation | Architecture P1 rédigée et contrôles statiques réussis.             |
+| P2 — Design system et Motion System     | Terminé                  | G2 vérifié; spécimen des 16 motifs et primitives motion bilingues livrés. |
+| P3 — Expérience globale et navigation   | En attente               | P2 validée; sélection créative H01/H02/H03 enregistrée.             |
+| P4 — Implémentation des pages           | En attente               | Sélections A/P/C/S/E/X consignées dans `08-creative-selections.md`. |
+| P5 — Expériences immersives avancées    | Conditionnel             | Bénéfice démontré; approbation dédiée si technologie lourde.        |
+| P6 — Stabilisation et assurance qualité | En attente               | Incréments choisis implémentés.                                     |
+| P7 — Livraison                          | En attente               | P6 validée et approbation explicite distincte de publication.       |
 
 ## Journal d’incréments
 
-| Date       | Mission | Résumé                                                                                                                                                      | Vérification                                                              | Validation                                                               |
-| ---------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| 2026-11-23 | P0      | Baseline et système de pilotage préparés; aucun code applicatif touché.                                                                                     | `format:check`, `lint`, `check`, `build` exécutés; détails dans baseline. | En attente de validation utilisateur.                                    |
-| 2026-11-23 | P0      | Autorisation utilisateur enregistrée pour toutes les captures fournies, y compris libellés visibles; `.env.prod` reste à supprimer de l’historique externe. | Documentation mise à jour; aucun fichier applicatif ou distant modifié.   | Autorisation des captures confirmée; P0 global en attente de validation. |
+| Date       | Mission | Résumé                                                                                                                                                      | Vérification                                                                 | Validation                                                               |
+| ---------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| 2026-11-23 | P0      | Baseline et système de pilotage préparés; aucun code applicatif touché.                                                                                     | `format:check`, `lint`, `check`, `build` exécutés; détails dans baseline.    | En attente de validation utilisateur.                                    |
+| 2026-11-23 | P0      | Autorisation utilisateur enregistrée pour toutes les captures fournies, y compris libellés visibles; `.env.prod` reste à supprimer de l’historique externe. | Documentation mise à jour; aucun fichier applicatif ou distant modifié.      | Autorisation des captures confirmée; P0 global en attente de validation. |
+| 2026-11-23 | P1      | Architecture native-first définie; aucune dépendance ni code applicatif ajouté.                                                                             | `npm run check`, `npm run build`; rapport détaillé P1.                       | En attente de validation utilisateur; P2 non commencé.                   |
+| 2026-11-23 | P2      | Tokens motion, primitives CSS et spécimen bilingue ajoutés sans moteur ni JS obligatoire.                                                                   | lint, check et build réussis; smoke test EN/FR et rendu navigateur vérifiés. | En attente de validation utilisateur.                                    |
+| 2026-11-23 | P2      | Sélection utilisateur enregistrée pour 16 composants immersifs, avec contraintes responsive, reduced-motion et confidentialité.                             | `08-creative-selections.md`; aucun fichier applicatif modifié.               | Sélection créative enregistrée; implémentation non autorisée.            |
+| 2026-11-23 | P2      | Arbitrage consigné pour transitions hybrides, échange de route masqué, navigation mixte et canvas épars suspendu.                                           | `09-motion-navigation-arbitrage.md`; aucun fichier applicatif modifié.       | Direction approuvée; prototype P3/P5 non commencé.                       |
+| 2026-11-23 | P2      | Spécimen interactif bilingue des 16 motifs intégré au système de design; primitives CSS natives conservées, sans transition globale ni canvas.             | `format:check`, `lint`, `check` (0 erreur, 0 avertissement, 32 hints) et build (22 routes); navigateur EN/FR, 3 largeurs, thèmes, clavier et reduced-motion vérifiés; contraste texte minimal 4,67:1 et focus 5,13:1. | Terminé à la demande explicite de l’utilisateur; intégration aux pages et transitions P3/P4/P5 restent hors périmètre. |
 
 ## Règles de mise à jour
 

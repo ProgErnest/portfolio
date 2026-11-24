@@ -1,0 +1,971 @@
+---
+import "../../styles/motion-specimen.css";
+
+/** @typedef {{ lang?: "en" | "fr" }} Props */
+/** @type {Props} */
+const { lang = "en" } = Astro.props;
+const isFrench = lang === "fr";
+
+const copy = isFrench
+  ? {
+      label: "Composition et mouvement",
+      title: "Des composants qui racontent une trajectoire d’ingénierie.",
+      intro:
+        "Spécimen des composants retenus pour chaque section. Les interactions démontrent leur comportement; les compositions conceptuelles ne sont pas des captures ni des architectures réelles.",
+      selected: "16 motifs sélectionnés",
+      hero: "Accueil",
+      about: "À propos",
+      projects: "Projets",
+      cases: "Études de cas",
+      skills: "Compétences",
+      experience: "Expérience",
+      contact: "Contact",
+      motion: "Grammaire du mouvement",
+      fieldNote:
+        "Champ orbital statique par défaut; la profondeur pointer est progressive.",
+      manifesto: "Au-delà du code.",
+      manifestoLine: "Bâtir des systèmes.",
+      play: "Rejouer la construction",
+      progress: "Lecture de la page",
+      progressHint:
+        "Le rail suit le défilement réel; il ne représente pas un chargement.",
+      practice: "Carte de pratique",
+      study: "Étudier",
+      build: "Construire",
+      reflect: "Analyser",
+      lead: "Orienter",
+      practiceDefault: "Les études alimentent la pratique des projets.",
+      capability: "Prisme de compétences",
+      systems: "Approche orientée systèmes",
+      architecture: "Architecture",
+      leadership: "Leadership technique",
+      capabilityHint:
+        "Domaines de développement, sans niveau de maîtrise revendiqué.",
+      stack: "Pile de projets",
+      stackHint: "Sélectionnez un projet pour examiner son statut vérifié.",
+      inProgress: "En cours",
+      complete: "Implémentation terminée · déployée",
+      functional: "Version fonctionnelle",
+      reconstruction: "Reconstruction en cours",
+      constellation: "Constellation des statuts",
+      evidence: "Scène de preuve",
+      evidenceDisclaimer:
+        "Structure illustrative — ne représente pas une capture de projet.",
+      expand: "Lire la limite de cette composition",
+      evidenceDetails:
+        "Un futur composant de preuve utilisera uniquement des visuels autorisés, une légende bilingue et un agrandissement accessible.",
+      architectureLayers: "Dépliage conceptuel",
+      architectureNote:
+        "Couches conceptuelles; ne décrivent pas une topologie vérifiée.",
+      interface: "Interface",
+      application: "Application",
+      data: "Données",
+      sequence: "Lecteur de séquence",
+      context: "Contexte",
+      decision: "Décision",
+      result: "Résultat",
+      sequenceDefault:
+        "Le contexte établit le point de départ d’une étude de cas.",
+      matrix: "Matrice de contexte",
+      matrixHint: "Choisissez un domaine pour mettre en évidence une relation.",
+      practiceAreas: "Domaines d’intérêt",
+      constellationSkills: "Constellation des compétences",
+      studyLabel: "Études",
+      practiceLabel: "Pratique",
+      directionLabel: "Direction",
+      instrument: "Instrument chronologique",
+      instrumentStudy: "Étudiant et praticien en ingénierie logicielle.",
+      instrumentProjects:
+        "Quatre projets développés individuellement; statuts décrits selon les informations confirmées.",
+      instrumentDirection:
+        "Développement progressif vers l’architecture des systèmes et le leadership technique.",
+      deferred: "Détails professionnels différés",
+      deferredSummary: "Rôles, dates et responsabilités",
+      deferredBody:
+        "Les informations professionnelles détaillées ne sont pas ajoutées ici sans confirmation pour publication.",
+      closing: "Aperture de clôture",
+      closingButton: "Prévisualiser la composition",
+      closingMessage:
+        "L’action de contact de production attend un canal public confirmé.",
+      copyAction: "Action de copie",
+      copyButton: "Copier le texte du spécimen",
+      copied: "Texte du spécimen copié.",
+      copyMessage:
+        "Exemple d’action; aucune coordonnée personnelle n’est incluse.",
+      pattern: "Motif",
+      motionSequence: "Construction en trois temps",
+      motionSequenceHint:
+        "Les effets de mouvement servent l’ordre de lecture; ils ne conditionnent jamais l’accès au contenu.",
+      stepOne: "Identité",
+      stepTwo: "Système",
+      stepThree: "Preuve",
+      transition: "Transition de route",
+      transitionHint:
+        "Le masque vertical est une direction retenue. Il ne sera activé qu’après le prototype de navigation P3.",
+      reduced: "Mouvement réduit",
+      reducedHint:
+        "Le système respecte prefers-reduced-motion : états finaux immédiats, aucune scène non essentielle.",
+      static: "État statique",
+      interactive: "Réponse interactive",
+      footer:
+        "Spécimen P2 · Les composants sélectionnés sont présentés avant leur intégration aux pages de production.",
+    }
+  : {
+      label: "Composition and motion",
+      title: "Components that tell an engineering trajectory.",
+      intro:
+        "A specimen of the selected components for each section. Interactions demonstrate behavior; conceptual compositions are not real screenshots or architectures.",
+      selected: "16 selected patterns",
+      hero: "Home",
+      about: "About",
+      projects: "Projects",
+      cases: "Case studies",
+      skills: "Skills",
+      experience: "Experience",
+      contact: "Contact",
+      motion: "Motion grammar",
+      fieldNote:
+        "Static orbital field by default; pointer depth is progressive enhancement.",
+      manifesto: "Beyond code.",
+      manifestoLine: "Building systems.",
+      play: "Replay construction",
+      progress: "Page reading",
+      progressHint:
+        "The rail follows actual scrolling; it does not represent loading.",
+      practice: "Practice map",
+      study: "Study",
+      build: "Build",
+      reflect: "Reflect",
+      lead: "Lead",
+      practiceDefault: "Study informs the practice behind each project.",
+      capability: "Capability prism",
+      systems: "Systems-oriented thinking",
+      architecture: "Architecture",
+      leadership: "Technical leadership",
+      capabilityHint: "Areas of development, not claimed levels of mastery.",
+      stack: "Project stack",
+      stackHint: "Select a project to inspect its verified status.",
+      inProgress: "In progress",
+      complete: "Implementation complete · deployed",
+      functional: "Functional version",
+      reconstruction: "Reconstruction in progress",
+      constellation: "Status constellation",
+      evidence: "Evidence stage",
+      evidenceDisclaimer: "Illustrative structure — not a project screenshot.",
+      expand: "Read the boundary of this composition",
+      evidenceDetails:
+        "A future evidence component will use only authorized visuals, a bilingual caption, and an accessible expansion.",
+      architectureLayers: "Conceptual unfolding",
+      architectureNote:
+        "Conceptual layers; they do not describe verified system topology.",
+      interface: "Interface",
+      application: "Application",
+      data: "Data",
+      sequence: "Sequence reader",
+      context: "Context",
+      decision: "Decision",
+      result: "Result",
+      sequenceDefault:
+        "Context establishes the starting point of a case study.",
+      matrix: "Context matrix",
+      matrixHint: "Choose an area to highlight a relationship.",
+      practiceAreas: "Areas of focus",
+      constellationSkills: "Capability constellation",
+      studyLabel: "Study",
+      practiceLabel: "Practice",
+      directionLabel: "Direction",
+      instrument: "Chronology instrument",
+      instrumentStudy: "Software engineering student and practitioner.",
+      instrumentProjects:
+        "Four individually developed projects; statuses reflect confirmed information.",
+      instrumentDirection:
+        "Developing toward systems architecture and technical leadership.",
+      deferred: "Professional details deferred",
+      deferredSummary: "Roles, dates, and responsibilities",
+      deferredBody:
+        "Detailed professional information is not added here without publication confirmation.",
+      closing: "Closing aperture",
+      closingButton: "Preview the composition",
+      closingMessage:
+        "The production contact action awaits a confirmed public channel.",
+      copyAction: "Copy action",
+      copyButton: "Copy specimen text",
+      copied: "Specimen text copied.",
+      copyMessage: "Action example; no personal contact details are included.",
+      pattern: "Pattern",
+      motionSequence: "Three-beat construction",
+      motionSequenceHint:
+        "Motion supports reading order; it never gates access to content.",
+      stepOne: "Identity",
+      stepTwo: "System",
+      stepThree: "Evidence",
+      transition: "Route transition",
+      transitionHint:
+        "The vertical mask is an approved direction. It will only be enabled after the P3 navigation prototype.",
+      reduced: "Reduced motion",
+      reducedHint:
+        "The system respects prefers-reduced-motion: immediate final states and no non-essential scenes.",
+      static: "Static state",
+      interactive: "Interactive response",
+      footer:
+        "P2 specimen · Selected components are demonstrated before integration into production pages.",
+    };
+
+const projects = [
+  {
+    slug: "hsvp",
+    name: "HSVP Hub",
+    status: copy.inProgress,
+    category: "active",
+  },
+  { slug: "jed", name: "JED", status: copy.complete, category: "complete" },
+  {
+    slug: "auction",
+    name: "Auction Bids",
+    status: copy.reconstruction,
+    category: "active",
+  },
+  {
+    slug: "library",
+    name: "Library Management",
+    status: copy.functional,
+    category: "functional",
+  },
+];
+---
+
+<section
+  class="motion-atlas"
+  data-language={lang}
+  aria-labelledby="motion-atlas-title"
+>
+  <header class="motion-atlas__intro">
+    <div>
+      <p class="motion-atlas__eyebrow">{copy.label}</p>
+      <h2 id="motion-atlas-title">{copy.title}</h2>
+    </div>
+    <div class="motion-atlas__intro-aside">
+      <p>{copy.intro}</p>
+      <span>{copy.selected}</span>
+    </div>
+  </header>
+
+  <nav
+    class="motion-atlas__nav"
+    aria-label={isFrench ? "Sections du spécimen" : "Specimen sections"}
+  >
+    <a href="#motion-home">{copy.hero}</a>
+    <a href="#motion-about">{copy.about}</a>
+    <a href="#motion-projects">{copy.projects}</a>
+    <a href="#motion-cases">{copy.cases}</a>
+    <a href="#motion-skills">{copy.skills}</a>
+    <a href="#motion-experience">{copy.experience}</a>
+    <a href="#motion-contact">{copy.contact}</a>
+    <a href="#motion-grammar">{copy.motion}</a>
+  </nav>
+
+  <section
+    class="motion-atlas__section"
+    id="motion-home"
+    aria-labelledby="motion-home-title"
+  >
+    <header class="motion-atlas__section-heading">
+      <p>01 / {copy.hero}</p>
+      <h3 id="motion-home-title">
+        {copy.manifesto} {copy.manifestoLine}
+      </h3>
+    </header>
+    <div class="motion-atlas__hero">
+      <div class="motion-atlas__orbital" data-orbital>
+        <span
+          class="motion-atlas__orbit motion-atlas__orbit--outer"
+          aria-hidden="true"
+        ></span>
+        <span
+          class="motion-atlas__orbit motion-atlas__orbit--inner"
+          aria-hidden="true"
+        ></span>
+        <span class="motion-atlas__orbit-axis" aria-hidden="true"></span>
+        <strong class="motion-atlas__monogram">EP</strong>
+        <span class="motion-atlas__node motion-atlas__node--top">
+          {copy.study}
+        </span>
+        <span class="motion-atlas__node motion-atlas__node--right">
+          {copy.projects}
+        </span>
+        <span class="motion-atlas__node motion-atlas__node--bottom">
+          {copy.evidence}
+        </span>
+      </div>
+      <div class="motion-atlas__manifesto">
+        <p class="motion-atlas__pattern">{copy.pattern} H01 + H02</p>
+        <p class="motion-atlas__manifesto-line">{copy.manifesto}</p>
+        <p
+          class="motion-atlas__manifesto-line motion-atlas__manifesto-line--accent"
+          data-manifesto
+        >
+          {copy.manifestoLine}
+        </p>
+        <button
+          class="button button--secondary"
+          type="button"
+          data-replay-manifesto
+        >
+          {copy.play}
+        </button>
+        <p class="motion-atlas__note">{copy.fieldNote}</p>
+      </div>
+      <div class="motion-atlas__page-progress" data-progress-root>
+        <div class="motion-atlas__page-progress-track">
+          <span data-page-progress></span>
+        </div>
+        <span>H03 / {copy.progress}</span>
+        <output data-progress-value>0%</output>
+        <p>{copy.progressHint}</p>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="motion-atlas__section"
+    id="motion-about"
+    aria-labelledby="motion-about-title"
+  >
+    <header class="motion-atlas__section-heading">
+      <p>02 / {copy.about}</p>
+      <h3 id="motion-about-title">
+        {copy.practice} <span>↔</span> {copy.capability}
+      </h3>
+    </header>
+    <div class="motion-atlas__split">
+      <article class="motion-atlas__specimen">
+        <div class="motion-atlas__specimen-heading">
+          <span>A01</span>
+          <h4>{copy.practice}</h4>
+        </div>
+        <div class="motion-atlas__practice-map" data-practice-map>
+          <svg viewBox="0 0 400 280" aria-hidden="true">
+            <path d="M200 140V35M200 140H350M200 140v105M200 140H50" />
+          </svg>
+          <span class="motion-atlas__practice-core">EP</span>
+          <button type="button" data-practice-choice="study">
+            {copy.study}
+          </button>
+          <button type="button" data-practice-choice="build">
+            {copy.build}
+          </button>
+          <button type="button" data-practice-choice="reflect">
+            {copy.reflect}
+          </button>
+          <button type="button" data-practice-choice="lead">
+            {copy.lead}
+          </button>
+          <output aria-live="polite">{copy.practiceDefault}</output>
+        </div>
+        <p class="motion-atlas__specimen-note">{copy.interactive}</p>
+      </article>
+      <article class="motion-atlas__specimen">
+        <div class="motion-atlas__specimen-heading">
+          <span>A03</span>
+          <h4>{copy.capability}</h4>
+        </div>
+        <div class="motion-atlas__prism" data-prism>
+          <button type="button" data-prism-face="systems">
+            {copy.systems}
+          </button>
+          <button type="button" data-prism-face="architecture">
+            {copy.architecture}
+          </button>
+          <button type="button" data-prism-face="leadership">
+            {copy.leadership}
+          </button>
+        </div>
+        <p class="motion-atlas__specimen-note">{copy.capabilityHint}</p>
+      </article>
+    </div>
+  </section>
+
+  <section
+    class="motion-atlas__section"
+    id="motion-projects"
+    aria-labelledby="motion-projects-title"
+  >
+    <header class="motion-atlas__section-heading">
+      <p>03 / {copy.projects}</p>
+      <h3 id="motion-projects-title">
+        {copy.stack} <span>+</span> {copy.constellation}
+      </h3>
+    </header>
+    <div class="motion-atlas__split">
+      <article class="motion-atlas__specimen">
+        <div class="motion-atlas__specimen-heading">
+          <span>P03</span>
+          <h4>{copy.stack}</h4>
+        </div>
+        <p class="motion-atlas__specimen-note">{copy.stackHint}</p>
+        <div class="motion-atlas__depth-stack" data-project-stack>
+          {projects.map((project, index) => (
+            <button
+              type="button"
+              class:list={[
+                "motion-atlas__project-layer",
+                index === 0 && "is-active",
+              ]}
+              style={`--layer-index: ${index}`}
+              data-project={project.slug}
+              aria-pressed={index === 0 ? "true" : "false"}
+            >
+              <span>{project.name}</span>
+              <small>{project.status}</small>
+            </button>
+          ))}
+        </div>
+      </article>
+      <article class="motion-atlas__specimen">
+        <div class="motion-atlas__specimen-heading">
+          <span>P04</span>
+          <h4>{copy.constellation}</h4>
+        </div>
+        <div class="motion-atlas__constellation">
+          <svg viewBox="0 0 500 320" aria-hidden="true">
+            <path d="M100 150 245 75 395 150 250 255 100 150M245 75 250 255M100 150 395 150" />
+          </svg>
+          {projects.map((project, index) => (
+            <button
+              type="button"
+              class:list={[
+                "motion-atlas__constellation-node",
+                `motion-atlas__constellation-node--${index + 1}`,
+              ]}
+              data-project={project.slug}
+            >
+              <b>{project.name}</b>
+              <span>{project.status}</span>
+            </button>
+          ))}
+        </div>
+        <p class="motion-atlas__specimen-note">{copy.static}</p>
+      </article>
+    </div>
+  </section>
+
+  <section
+    class="motion-atlas__section"
+    id="motion-cases"
+    aria-labelledby="motion-cases-title"
+  >
+    <header class="motion-atlas__section-heading">
+      <p>04 / {copy.cases}</p>
+      <h3 id="motion-cases-title">
+        {copy.evidence} <span>+</span> {copy.architectureLayers}
+      </h3>
+    </header>
+    <article class="motion-atlas__specimen motion-atlas__evidence-stage">
+      <div class="motion-atlas__specimen-heading">
+        <span>C01</span>
+        <h4>{copy.evidence}</h4>
+      </div>
+      <div class="motion-atlas__evidence-grid">
+        <div class="motion-atlas__wireframe" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="motion-atlas__evidence-copy">
+          <p class="motion-atlas__pattern">{copy.evidenceDisclaimer}</p>
+          <details>
+            <summary>{copy.expand}</summary>
+            <p>{copy.evidenceDetails}</p>
+          </details>
+        </div>
+      </div>
+    </article>
+    <div class="motion-atlas__split">
+      <article class="motion-atlas__specimen">
+        <div class="motion-atlas__specimen-heading">
+          <span>C02</span>
+          <h4>{copy.architectureLayers}</h4>
+        </div>
+        <p class="motion-atlas__specimen-note">{copy.architectureNote}</p>
+        <div class="motion-atlas__layers">
+          <details open>
+            <summary>
+              <span>01</span>
+              {copy.interface}
+            </summary>
+            <p>
+              {isFrench
+                ? "Couche de présentation conceptuelle."
+                : "Conceptual presentation layer."}
+            </p>
+          </details>
+          <details>
+            <summary>
+              <span>02</span>
+              {copy.application}
+            </summary>
+            <p>
+              {isFrench
+                ? "Couche de logique conceptuelle."
+                : "Conceptual logic layer."}
+            </p>
+          </details>
+          <details>
+            <summary>
+              <span>03</span>
+              {copy.data}
+            </summary>
+            <p>
+              {isFrench
+                ? "Couche de données conceptuelle."
+                : "Conceptual data layer."}
+            </p>
+          </details>
+        </div>
+      </article>
+      <article class="motion-atlas__specimen">
+        <div class="motion-atlas__specimen-heading">
+          <span>C04</span>
+          <h4>{copy.sequence}</h4>
+        </div>
+        <div class="motion-atlas__sequence" data-sequence>
+          <div
+            class="motion-atlas__sequence-controls"
+            role="group"
+            aria-label={copy.sequence}
+          >
+            {[copy.context, copy.decision, copy.result].map((step, index) => (
+              <button
+                type="button"
+                class:list={[
+                  "motion-atlas__sequence-step",
+                  index === 0 && "is-active",
+                ]}
+                data-sequence-step={index}
+                aria-pressed={index === 0 ? "true" : "false"}
+              >
+                <span>0{index + 1}</span>
+                {step}
+              </button>
+            ))}
+          </div>
+          <output aria-live="polite">{copy.sequenceDefault}</output>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section
+    class="motion-atlas__section"
+    id="motion-skills"
+    aria-labelledby="motion-skills-title"
+  >
+    <header class="motion-atlas__section-heading">
+      <p>05 / {copy.skills}</p>
+      <h3 id="motion-skills-title">
+        {copy.matrix} <span>+</span> {copy.constellationSkills}
+      </h3>
+    </header>
+    <div class="motion-atlas__split">
+      <article class="motion-atlas__specimen">
+        <div class="motion-atlas__specimen-heading">
+          <span>S01</span>
+          <h4>{copy.matrix}</h4>
+        </div>
+        <p class="motion-atlas__specimen-note">{copy.matrixHint}</p>
+        <div class="motion-atlas__context-matrix" data-context-matrix>
+          <span class="motion-atlas__axis-label motion-atlas__axis-label--x">
+            {copy.practiceAreas}
+          </span>
+          <span class="motion-atlas__axis-label motion-atlas__axis-label--y">
+            {copy.directionLabel}
+          </span>
+          <button type="button" data-context="engineering">
+            {isFrench ? "Ingénierie logicielle" : "Software engineering"}
+          </button>
+          <button type="button" data-context="systems">
+            {copy.systems}
+          </button>
+          <button type="button" data-context="architecture">
+            {copy.architecture}
+          </button>
+        </div>
+      </article>
+      <article class="motion-atlas__specimen">
+        <div class="motion-atlas__specimen-heading">
+          <span>S02</span>
+          <h4>{copy.constellationSkills}</h4>
+        </div>
+        <div class="motion-atlas__skill-orbit">
+          <strong>{isFrench ? "Ingénierie" : "Engineering"}</strong>
+          <span>{copy.systems}</span>
+          <span>{copy.studyLabel}</span>
+          <span>{copy.practiceLabel}</span>
+          <span>{copy.directionLabel}</span>
+        </div>
+        <p class="motion-atlas__specimen-note">{copy.capabilityHint}</p>
+      </article>
+    </div>
+  </section>
+
+  <section
+    class="motion-atlas__section"
+    id="motion-experience"
+    aria-labelledby="motion-experience-title"
+  >
+    <header class="motion-atlas__section-heading">
+      <p>06 / {copy.experience}</p>
+      <h3 id="motion-experience-title">
+        {copy.instrument} <span>+</span> {copy.deferred}
+      </h3>
+    </header>
+    <div class="motion-atlas__split">
+      <article class="motion-atlas__specimen">
+        <div class="motion-atlas__specimen-heading">
+          <span>E01</span>
+          <h4>{copy.instrument}</h4>
+        </div>
+        <ol class="motion-atlas__timeline">
+          <li>
+            <span>{copy.studyLabel}</span>
+            <p>{copy.instrumentStudy}</p>
+          </li>
+          <li>
+            <span>{copy.practiceLabel}</span>
+            <p>{copy.instrumentProjects}</p>
+          </li>
+          <li>
+            <span>{copy.directionLabel}</span>
+            <p>{copy.instrumentDirection}</p>
+          </li>
+        </ol>
+      </article>
+      <article class="motion-atlas__specimen">
+        <div class="motion-atlas__specimen-heading">
+          <span>E02</span>
+          <h4>{copy.deferred}</h4>
+        </div>
+        <details class="motion-atlas__deferred">
+          <summary>
+            {copy.deferredSummary}
+            <span aria-hidden="true">+</span>
+          </summary>
+          <p>{copy.deferredBody}</p>
+        </details>
+      </article>
+    </div>
+  </section>
+
+  <section
+    class="motion-atlas__section"
+    id="motion-contact"
+    aria-labelledby="motion-contact-title"
+  >
+    <header class="motion-atlas__section-heading">
+      <p>07 / {copy.contact}</p>
+      <h3 id="motion-contact-title">
+        {copy.closing} <span>+</span> {copy.copyAction}
+      </h3>
+    </header>
+    <div class="motion-atlas__split">
+      <article class="motion-atlas__specimen">
+        <div class="motion-atlas__specimen-heading">
+          <span>X01</span>
+          <h4>{copy.closing}</h4>
+        </div>
+        <div class="motion-atlas__closing">
+          <p>
+            {isFrench
+              ? "Une conversation commence par une action claire."
+              : "A conversation starts with one clear action."}
+          </p>
+          <button type="button" data-closing>
+            {copy.closingButton}
+            <span aria-hidden="true">↗</span>
+          </button>
+          <output aria-live="polite">{copy.closingMessage}</output>
+        </div>
+      </article>
+      <article class="motion-atlas__specimen">
+        <div class="motion-atlas__specimen-heading">
+          <span>X03</span>
+          <h4>{copy.copyAction}</h4>
+        </div>
+        <div class="motion-atlas__copy-demo">
+          <p>{copy.copyMessage}</p>
+          <button
+            type="button"
+            data-copy-demo
+            data-copy-text={copy.copyMessage}
+          >
+            {copy.copyButton}
+          </button>
+          <output aria-live="polite"></output>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section
+    class="motion-atlas__section motion-atlas__motion-section"
+    id="motion-grammar"
+    aria-labelledby="motion-grammar-title"
+  >
+    <header class="motion-atlas__section-heading">
+      <p>08 / {copy.motion}</p>
+      <h3 id="motion-grammar-title">{copy.motionSequence}</h3>
+    </header>
+    <div class="motion-atlas__sequence-demo" data-scene>
+      <div class="motion-atlas__scene-stage">
+        <span>{copy.stepOne}</span>
+        <span>{copy.stepTwo}</span>
+        <span>{copy.stepThree}</span>
+      </div>
+      <div>
+        <p>{copy.motionSequenceHint}</p>
+        <button type="button" data-play-scene>
+          {copy.play}
+        </button>
+      </div>
+    </div>
+    <div class="motion-atlas__motion-notes">
+      <article>
+        <h4>{copy.transition}</h4>
+        <p>{copy.transitionHint}</p>
+      </article>
+      <article>
+        <h4>{copy.reduced}</h4>
+        <p>{copy.reducedHint}</p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="motion-atlas__footer">{copy.footer}</footer>
+</section>
+
+<script>
+  const root = document.querySelector(".motion-atlas");
+  if (!(root instanceof HTMLElement)) {
+    throw new Error("The motion specimen root is missing.");
+  }
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  const practiceCopy =
+    root.dataset.language === "fr"
+      ? {
+          study: "Les études alimentent la pratique des projets.",
+          build: "Les projets transforment l’apprentissage en pratique.",
+          reflect: "L’analyse distingue une décision d’un résultat.",
+          lead: "Le leadership technique est une direction de développement.",
+        }
+      : {
+          study: "Study informs the practice behind each project.",
+          build: "Projects turn learning into practice.",
+          reflect: "Reflection distinguishes a decision from an outcome.",
+          lead: "Technical leadership is a developing direction.",
+        };
+
+  root.querySelectorAll("[data-practice-choice]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!(button instanceof HTMLButtonElement)) return;
+      root
+        .querySelectorAll("[data-practice-choice]")
+        .forEach((item) => item.classList.toggle("is-active", item === button));
+      const output = root.querySelector(".motion-atlas__practice-map output");
+      if (output) {
+        const choice = button.dataset.practiceChoice;
+        if (choice === "build") output.textContent = practiceCopy.build;
+        else if (choice === "reflect") {
+          output.textContent = practiceCopy.reflect;
+        } else if (choice === "lead") {
+          output.textContent = practiceCopy.lead;
+        } else output.textContent = practiceCopy.study;
+      }
+    });
+  });
+
+  const orbital = root.querySelector("[data-orbital]");
+  if (orbital instanceof HTMLElement && !reducedMotion.matches) {
+    let frame = 0;
+    orbital.addEventListener(
+      "pointermove",
+      (event) => {
+        if (event.pointerType !== "mouse") return;
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(() => {
+          const bounds = orbital.getBoundingClientRect();
+          const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+          const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+          orbital.style.setProperty("--pointer-x", `${x * 4}deg`);
+          orbital.style.setProperty("--pointer-y", `${y * -4}deg`);
+        });
+      },
+      { passive: true },
+    );
+    orbital.addEventListener("pointerleave", () => {
+      cancelAnimationFrame(frame);
+      orbital.style.removeProperty("--pointer-x");
+      orbital.style.removeProperty("--pointer-y");
+    });
+  }
+
+  const progressBar = root.querySelector("[data-page-progress]");
+  const progressOutput = root.querySelector("[data-progress-value]");
+  if (
+    progressBar instanceof HTMLElement &&
+    progressOutput instanceof HTMLOutputElement
+  ) {
+    let progressFrame = 0;
+    const updateProgress = () => {
+      cancelAnimationFrame(progressFrame);
+      progressFrame = requestAnimationFrame(() => {
+        const scrollRange =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const progress =
+          scrollRange > 0
+            ? Math.round((window.scrollY / scrollRange) * 100)
+            : 0;
+        progressBar.style.transform = `scaleX(${progress / 100})`;
+        progressOutput.value = `${progress}%`;
+      });
+    };
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+    updateProgress();
+  }
+
+  const selectProject = (slug = "") => {
+    root.querySelectorAll(".motion-atlas__project-layer").forEach((button) => {
+      const selected = button.getAttribute("data-project") === slug;
+      button.classList.toggle("is-active", selected);
+      button.setAttribute("aria-pressed", String(selected));
+    });
+    root
+      .querySelectorAll(".motion-atlas__constellation-node")
+      .forEach((node) => {
+        node.classList.toggle(
+          "is-active",
+          node.getAttribute("data-project") === slug,
+        );
+      });
+  };
+  root.querySelectorAll("[data-project]").forEach((button) => {
+    button.addEventListener("click", () => {
+      selectProject(button.getAttribute("data-project") ?? "");
+    });
+  });
+
+  const sequenceCopy =
+    root.dataset.language === "fr"
+      ? [
+          "Le contexte établit le point de départ d’une étude de cas.",
+          "La décision explique le choix traité et ses limites.",
+          "Le résultat ne présente que des faits vérifiés.",
+        ]
+      : [
+          "Context establishes the starting point of a case study.",
+          "The decision explains the choice and its boundaries.",
+          "The result presents verified facts only.",
+        ];
+  root.querySelectorAll("[data-sequence-step]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!(button instanceof HTMLButtonElement)) return;
+      const step = Number(button.dataset.sequenceStep);
+      root.querySelectorAll("[data-sequence-step]").forEach((item) => {
+        const active = item === button;
+        item.classList.toggle("is-active", active);
+        item.setAttribute("aria-pressed", String(active));
+      });
+      const output = root.querySelector(".motion-atlas__sequence output");
+      if (output) output.textContent = sequenceCopy[step] ?? sequenceCopy[0];
+    });
+  });
+
+  root.querySelectorAll("[data-context]").forEach((button) => {
+    button.addEventListener("click", () => {
+      root.querySelectorAll("[data-context]").forEach((item) => {
+        item.classList.toggle("is-active", item === button);
+      });
+    });
+  });
+
+  const sceneButton = root.querySelector("[data-play-scene]");
+  const scene = root.querySelector("[data-scene]");
+  const manifestoButton = root.querySelector("[data-replay-manifesto]");
+  const manifesto = root.querySelector("[data-manifesto]");
+  const updateMotionAvailability = () => {
+    if (sceneButton instanceof HTMLButtonElement) {
+      sceneButton.disabled = reducedMotion.matches;
+    }
+    if (manifestoButton instanceof HTMLButtonElement) {
+      manifestoButton.disabled = reducedMotion.matches;
+    }
+    if (reducedMotion.matches) {
+      scene?.classList.remove("is-playing");
+      manifesto?.classList.remove("is-building");
+      if (orbital instanceof HTMLElement) {
+        orbital.style.removeProperty("--pointer-x");
+        orbital.style.removeProperty("--pointer-y");
+      }
+    }
+  };
+  updateMotionAvailability();
+  reducedMotion.addEventListener("change", updateMotionAvailability);
+
+  if (
+    sceneButton instanceof HTMLButtonElement &&
+    scene instanceof HTMLElement
+  ) {
+    sceneButton.addEventListener("click", () => {
+      if (reducedMotion.matches) return;
+      scene.classList.remove("is-playing");
+      void scene.offsetWidth;
+      scene.classList.add("is-playing");
+    });
+  }
+
+  if (
+    manifestoButton instanceof HTMLButtonElement &&
+    manifesto instanceof HTMLElement
+  ) {
+    manifestoButton.addEventListener("click", () => {
+      if (reducedMotion.matches) return;
+      manifesto.classList.remove("is-building");
+      void manifesto.offsetWidth;
+      manifesto.classList.add("is-building");
+    });
+  }
+
+  root.querySelector("[data-closing]")?.addEventListener("click", (event) => {
+    const button = event.currentTarget;
+    if (!(button instanceof HTMLButtonElement)) return;
+    button.classList.toggle("is-active");
+  });
+
+  root
+    .querySelector("[data-copy-demo]")
+    ?.addEventListener("click", async (event) => {
+      const button = event.currentTarget;
+      if (!(button instanceof HTMLButtonElement)) return;
+      const output = button.parentElement?.querySelector("output");
+      try {
+        await navigator.clipboard.writeText(button.dataset.copyText ?? "");
+        if (output) {
+          output.textContent =
+            root.dataset.language === "fr"
+              ? "Texte du spécimen copié."
+              : "Specimen text copied.";
+        }
+      } catch (error) {
+        if (output) {
+          output.textContent =
+            root.dataset.language === "fr"
+              ? "La copie automatique est indisponible dans ce contexte."
+              : "Automatic copy is unavailable in this context.";
+        }
+        console.warn("Could not copy the specimen text.", error);
+      }
+    });
+</script>
