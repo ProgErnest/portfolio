@@ -14,6 +14,11 @@ const copy = isFrench
       title: "Au-delà du code. Bâtir des systèmes.",
       introduction:
         "Je suis étudiant et praticien en ingénierie logicielle. Je développe mon approche vers l’architecture des systèmes et le leadership technique.",
+      fieldLabel: "Trajectoires",
+      fieldPractice: "Pratique",
+      fieldProjects: "Projets",
+      fieldDirection: "Direction",
+      scrollSignal: "Découvrir les projets",
       projectsAction: "Voir les projets sélectionnés",
       contactAction: "Informations de contact",
       aboutLabel: "À propos",
@@ -94,6 +99,11 @@ const copy = isFrench
       title: "Beyond code. Building systems.",
       introduction:
         "I’m a software engineering student and practitioner, developing toward systems architecture and technical leadership.",
+      fieldLabel: "Trajectories",
+      fieldPractice: "Practice",
+      fieldProjects: "Projects",
+      fieldDirection: "Direction",
+      scrollSignal: "Explore selected projects",
       projectsAction: "Explore selected projects",
       contactAction: "Contact information",
       aboutLabel: "About",
@@ -188,11 +198,37 @@ const copy = isFrench
       </div>
     </div>
 
-    <div class="home-hero__mark" aria-hidden="true">
-      <span class="home-hero__mark-top">EP</span>
-      <span class="home-hero__mark-rule"></span>
-      <span class="home-hero__mark-bottom">EP</span>
-    </div>
+    <nav class="home-hero__field" aria-label={copy.fieldLabel}>
+      <span class="home-hero__field-origin" aria-hidden="true">
+        EP
+      </span>
+      <a
+        class="home-hero__trajectory home-hero__trajectory--practice"
+        href="#about"
+      >
+        <span aria-hidden="true"></span>
+        {copy.fieldPractice}
+      </a>
+      <a
+        class="home-hero__trajectory home-hero__trajectory--projects"
+        href="#projects"
+      >
+        <span aria-hidden="true"></span>
+        {copy.fieldProjects}
+      </a>
+      <a
+        class="home-hero__trajectory home-hero__trajectory--direction"
+        href="#experience"
+      >
+        <span aria-hidden="true"></span>
+        {copy.fieldDirection}
+      </a>
+    </nav>
+
+    <a class="home-hero__scroll" href="#projects">
+      <span aria-hidden="true"></span>
+      {copy.scrollSignal}
+    </a>
   </section>
 
   <section
@@ -330,6 +366,7 @@ const copy = isFrench
     letter-spacing: -0.075em;
     line-height: 0.98;
     text-wrap: balance;
+    animation: home-manifesto var(--motion-scene) var(--ease-emphasis) both;
   }
 
   .home-hero__introduction {
@@ -346,43 +383,43 @@ const copy = isFrench
     margin-top: 1.8rem;
   }
 
-  .home-hero__mark {
+  .home-hero__field {
     position: relative;
-    display: grid;
     width: min(100%, 22rem);
     aspect-ratio: 1;
-    place-items: center;
     justify-self: end;
     border: 1px solid var(--border-default);
     border-radius: 50%;
     color: var(--accent-green);
   }
 
-  .home-hero__mark::before,
-  .home-hero__mark::after {
+  .home-hero__field::before,
+  .home-hero__field::after {
     position: absolute;
     content: "";
     border: 1px solid var(--border-default);
     border-radius: 50%;
   }
 
-  .home-hero__mark::before {
+  .home-hero__field::before {
     inset: 12%;
   }
 
-  .home-hero__mark::after {
+  .home-hero__field::after {
     inset: 24%;
     border-color: var(--accent-blue);
   }
 
-  .home-hero__mark-top,
-  .home-hero__mark-bottom {
+  .home-hero__field-origin {
     position: absolute;
     z-index: 1;
+    top: 50%;
+    left: 50%;
     display: grid;
-    width: 5.4rem;
-    height: 5.4rem;
+    width: 5rem;
+    height: 5rem;
     place-items: center;
+    transform: translate(-50%, -50%);
     border: 1px solid var(--border-default);
     border-radius: 1rem;
     background: var(--surface-page);
@@ -392,23 +429,78 @@ const copy = isFrench
     letter-spacing: -0.08em;
   }
 
-  .home-hero__mark-top {
-    top: 16%;
-    right: 7%;
-  }
-
-  .home-hero__mark-bottom {
-    bottom: 16%;
-    left: 7%;
-    color: var(--accent-blue);
-  }
-
-  .home-hero__mark-rule {
+  .home-hero__trajectory {
     position: absolute;
-    width: 1px;
-    height: 66%;
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--text-primary);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .home-hero__trajectory span {
+    width: 2.8rem;
+    height: 1px;
     background: var(--border-default);
-    transform: rotate(45deg);
+  }
+
+  .home-hero__trajectory--practice {
+    top: 18%;
+    right: -10%;
+  }
+
+  .home-hero__trajectory--projects {
+    right: -14%;
+    bottom: 18%;
+  }
+
+  .home-hero__trajectory--direction {
+    bottom: 7%;
+    left: -8%;
+  }
+
+  .home-hero__trajectory:hover,
+  .home-hero__trajectory:focus-visible {
+    color: var(--accent-green);
+  }
+
+  .home-hero__trajectory:hover span,
+  .home-hero__trajectory:focus-visible span {
+    background: var(--accent-green);
+  }
+
+  .home-hero__scroll {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 0;
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.65rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-decoration: none;
+  }
+
+  .home-hero__scroll span {
+    width: 3.5rem;
+    height: 1px;
+    background: var(--accent-green);
+  }
+
+  @keyframes home-manifesto {
+    from {
+      opacity: 0;
+      transform: translateY(var(--motion-distance-md));
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .home-section {
@@ -547,24 +639,19 @@ const copy = isFrench
       padding-block: 4.5rem;
     }
 
-    .home-hero__mark {
+    .home-hero__field {
       width: 100%;
     }
 
-    .home-hero__mark-top,
-    .home-hero__mark-bottom {
-      width: 3.5rem;
-      height: 3.5rem;
+    .home-hero__field-origin {
+      width: 4rem;
+      height: 4rem;
       border-radius: 0.75rem;
       font-size: 1.35rem;
     }
 
-    .home-hero__mark-top {
-      right: -5%;
-    }
-
-    .home-hero__mark-bottom {
-      left: -5%;
+    .home-hero__trajectory span {
+      width: 1.6rem;
     }
   }
 
@@ -583,18 +670,24 @@ const copy = isFrench
       font-size: clamp(3rem, 15vw, 5rem);
     }
 
-    .home-hero__mark {
-      position: absolute;
-      top: 1.8rem;
-      right: -2.7rem;
-      width: 8rem;
-      opacity: 0.28;
+    .home-hero__field {
+      width: min(100%, 16rem);
+      justify-self: center;
     }
 
-    .home-hero__mark-top,
-    .home-hero__mark-bottom,
-    .home-hero__mark-rule {
-      display: none;
+    .home-hero__trajectory--practice,
+    .home-hero__trajectory--projects {
+      right: -4%;
+    }
+
+    .home-hero__trajectory--direction {
+      left: -4%;
+    }
+
+    .home-hero__scroll {
+      position: static;
+      grid-column: 1;
+      margin-top: 0.5rem;
     }
 
     .home-section,
@@ -607,6 +700,14 @@ const copy = isFrench
     .home-skill {
       grid-template-columns: 1fr;
       gap: 0.7rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-hero h1 {
+      animation: none;
+      opacity: 1;
+      transform: none;
     }
   }
 </style>

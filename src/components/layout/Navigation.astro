@@ -97,6 +97,7 @@ const items = [
   <details
     class="primary-navigation"
     data-site-navigation
+    data-menu-state="closed"
     data-open-label={copy.openMenu}
     data-close-label={copy.closeMenu}
     open
@@ -177,6 +178,7 @@ const items = [
   }
 
   const updateMenuLabel = () => {
+    menu.dataset.menuState = menu.open ? "open" : "closed";
     summary.setAttribute(
       "aria-label",
       menu.open
@@ -184,6 +186,8 @@ const items = [
         : (menu.dataset.openLabel ?? "Menu, open navigation"),
     );
   };
+
+  menu.classList.add("is-enhanced");
 
   if (mobileViewport.matches) {
     menu.open = false;
@@ -396,6 +400,11 @@ const items = [
       background: var(--surface-card);
       box-shadow: 0 0.75rem 2rem
         color-mix(in srgb, var(--text-primary) 12%, transparent);
+    }
+
+    .primary-navigation.is-enhanced[data-menu-state="closed"]
+      .primary-navigation__panel {
+      display: none;
     }
 
     .primary-navigation__list {

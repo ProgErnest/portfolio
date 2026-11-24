@@ -180,7 +180,8 @@ applicatifs autorisés.
   blocage de navigation.
 - **Tests nécessaires :** toutes routes, switch langue avec et sans équivalent,
   thème, clavier, viewports mobile/tablette/bureau.
-- **Statut initial :** En attente.
+- **Statut :** Terminé pour l’audit, le shell responsive, le prototype isolé,
+  les états clavier/mobile/thème/langue et les tests disponibles.
 
 ### P3-02 — Composer l’accueil autour de la preuve et du champ EP
 
@@ -197,7 +198,8 @@ applicatifs autorisés.
   injustifiée du chargement initial.
 - **Tests nécessaires :** routes `/` et `/fr/`, responsive, clavier, mouvement
   réduit, liens et décalage de mise en page autour du Hero.
-- **Statut initial :** En attente.
+- **Statut :** Terminé pour la direction statique H01/H02/H03 approuvée;
+  aucune composition immersive supplémentaire n’a été intégrée.
 
 ## P4 — Implémentation des pages
 

@@ -102,6 +102,10 @@ const copy = isFrench
       transition: "Transition de route",
       transitionHint:
         "Le masque vertical est une direction retenue. Il ne sera activé qu’après le prototype de navigation P3.",
+      maskPrototype: "Tester le masque vertical",
+      maskStatusIdle: "Prototype isolé, aucune navigation déclenchée.",
+      maskStatusCover: "Masque ouvert.",
+      maskStatusReveal: "Masque fermé; état final restauré.",
       reduced: "Mouvement réduit",
       reducedHint:
         "Le système respecte prefers-reduced-motion : états finaux immédiats, aucune scène non essentielle.",
@@ -202,6 +206,10 @@ const copy = isFrench
       transition: "Route transition",
       transitionHint:
         "The vertical mask is an approved direction. It will only be enabled after the P3 navigation prototype.",
+      maskPrototype: "Test the vertical mask",
+      maskStatusIdle: "Isolated prototype; no navigation is triggered.",
+      maskStatusCover: "Mask covering.",
+      maskStatusReveal: "Mask cleared; final state restored.",
       reduced: "Reduced motion",
       reducedHint:
         "The system respects prefers-reduced-motion: immediate final states and no non-essential scenes.",
@@ -733,6 +741,23 @@ const projects = [
       <article>
         <h4>{copy.transition}</h4>
         <p>{copy.transitionHint}</p>
+        <button
+          class="motion-atlas__mask-button"
+          type="button"
+          data-mask-prototype
+        >
+          {copy.maskPrototype}
+        </button>
+        <output data-mask-status aria-live="polite">
+          {copy.maskStatusIdle}
+        </output>
+        <div
+          class="motion-atlas__route-mask"
+          data-route-mask
+          aria-hidden="true"
+        >
+          <span>{copy.transition}</span>
+        </div>
       </article>
       <article>
         <h4>{copy.reduced}</h4>
@@ -935,6 +960,63 @@ const projects = [
       manifesto.classList.remove("is-building");
       void manifesto.offsetWidth;
       manifesto.classList.add("is-building");
+    });
+  }
+
+  const maskButton = root.querySelector("[data-mask-prototype]");
+  const routeMask = root.querySelector("[data-route-mask]");
+  const maskStatus = root.querySelector("[data-mask-status]");
+  let maskTimer = 0;
+  let maskRunning = false;
+
+  const resetMask = () => {
+    window.clearTimeout(maskTimer);
+    routeMask?.classList.remove("is-covering", "is-revealing");
+    routeMask?.setAttribute("aria-hidden", "true");
+    maskRunning = false;
+  };
+
+  if (
+    maskButton instanceof HTMLButtonElement &&
+    routeMask instanceof HTMLElement &&
+    maskStatus instanceof HTMLOutputElement
+  ) {
+    maskButton.disabled = reducedMotion.matches;
+
+    maskButton.addEventListener("click", () => {
+      if (maskRunning || reducedMotion.matches) return;
+      maskRunning = true;
+      routeMask.setAttribute("aria-hidden", "false");
+      routeMask.classList.remove("is-revealing");
+      routeMask.classList.add("is-covering");
+      maskStatus.textContent =
+        root.dataset.language === "fr" ? "Masque ouvert." : "Mask covering.";
+
+      maskTimer = window.setTimeout(() => {
+        routeMask.classList.remove("is-covering");
+        routeMask.classList.add("is-revealing");
+        maskStatus.textContent =
+          root.dataset.language === "fr"
+            ? "Masque fermé; état final restauré."
+            : "Mask cleared; final state restored.";
+        maskTimer = window.setTimeout(resetMask, 420);
+      }, 420);
+    });
+
+    reducedMotion.addEventListener("change", () => {
+      resetMask();
+      maskButton.disabled = reducedMotion.matches;
+      if (reducedMotion.matches) {
+        routeMask.getAnimations().forEach((animation) => animation.cancel());
+        routeMask.classList.remove("is-covering", "is-revealing");
+        routeMask.style.visibility = "hidden";
+      } else {
+        routeMask.style.removeProperty("visibility");
+      }
+      maskStatus.textContent =
+        root.dataset.language === "fr"
+          ? "Prototype isolé, aucune navigation déclenchée."
+          : "Isolated prototype; no navigation is triggered.";
     });
   }
 

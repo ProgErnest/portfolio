@@ -47,7 +47,7 @@ une date et des preuves observables.
 | P0 — Initialisation                     | Terminé                  | La mission P1 a été lancée par l’utilisateur.                       |
 | P1 — Architecture technique             | En attente de validation | Architecture P1 rédigée et contrôles statiques réussis.             |
 | P2 — Design system et Motion System     | Terminé                  | G2 vérifié; spécimen des 16 motifs et primitives motion bilingues livrés. |
-| P3 — Expérience globale et navigation   | En attente               | P2 validée; sélection créative H01/H02/H03 enregistrée.             |
+| P3 — Expérience globale et navigation   | En attente de validation finale | P3-01/P3-02 réalisés, audit/prototype/gate responsive et accueil EN/FR vérifiés; clôture humaine restante. |
 | P4 — Implémentation des pages           | En attente               | Sélections A/P/C/S/E/X consignées dans `08-creative-selections.md`. |
 | P5 — Expériences immersives avancées    | Conditionnel             | Bénéfice démontré; approbation dédiée si technologie lourde.        |
 | P6 — Stabilisation et assurance qualité | En attente               | Incréments choisis implémentés.                                     |
@@ -64,6 +64,8 @@ une date et des preuves observables.
 | 2026-11-23 | P2      | Sélection utilisateur enregistrée pour 16 composants immersifs, avec contraintes responsive, reduced-motion et confidentialité.                             | `08-creative-selections.md`; aucun fichier applicatif modifié.               | Sélection créative enregistrée; implémentation non autorisée.            |
 | 2026-11-23 | P2      | Arbitrage consigné pour transitions hybrides, échange de route masqué, navigation mixte et canvas épars suspendu.                                           | `09-motion-navigation-arbitrage.md`; aucun fichier applicatif modifié.       | Direction approuvée; prototype P3/P5 non commencé.                       |
 | 2026-11-23 | P2      | Spécimen interactif bilingue des 16 motifs intégré au système de design; primitives CSS natives conservées, sans transition globale ni canvas.             | `format:check`, `lint`, `check` (0 erreur, 0 avertissement, 32 hints) et build (22 routes); navigateur EN/FR, 3 largeurs, thèmes, clavier et reduced-motion vérifiés; contraste texte minimal 4,67:1 et focus 5,13:1. | Terminé à la demande explicite de l’utilisateur; intégration aux pages et transitions P3/P4/P5 restent hors périmètre. |
+| 2026-11-24 | P3      | Audit P3 enregistré et prototype isolé du masque vertical ajouté au spécimen du système de design; aucun routeur ni lien de production activé. | `format:check`, `lint`, `check` (0 erreur, 0 avertissement, 32 hints) et build (22 routes) réussis; rapport `p3-navigation-audit-and-plan.md`. | Prototype livré; intégration globale et décision shell restant à valider. |
+| 2026-11-24 | P3      | Accueil EN/FR enrichi avec le champ EP H01, le manifeste cinétique H02 et le signal H03, dans le périmètre statique approuvé. | 320/390/768/1024/1280 px vérifiés sans débordement; reduced motion, focus clavier, liens internes et HTML statique vérifiés; format, lint, check et build réussis. | P3-02 réalisé; fermeture P3 restante seulement pour validation humaine explicite. |
 
 ## Règles de mise à jour
 
