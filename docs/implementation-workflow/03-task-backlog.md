@@ -203,6 +203,24 @@ applicatifs autorisés.
 
 ## P4 — Implémentation des pages
 
+### P4-Accueil — Finaliser les motifs H01, H02 et H03
+
+- **Description :** conserver l’identité orbitale statique, le manifeste
+  cinétique native CSS et le signal de défilement réel sur les pages
+  d’accueil EN/FR.
+- **Objectif :** finir l’intégration de production de `H01/H02/H03` sans
+  ajouter de moteur, de canvas ni de comportement qui masque le contenu.
+- **Fichiers/composants :** `src/components/home/Home.astro`,
+  `src/pages/index.astro`, `src/pages/fr/index.astro`.
+- **Dépendances :** P3-02, sélection créative approuvée H01/H02/H03.
+- **Priorité / complexité :** Haute / M.
+- **Critères d’acceptation :** parité EN/FR, liens orbitaux explicites,
+  titre/actions conservés, signal lié à la vraie section projets, mobile
+  lisible, clavier/tactile/reduced motion fonctionnels, aucun débordement.
+- **Tests nécessaires :** 390/768/1280 px, clavier, reduced motion, liens
+  internes, HTML statique, format, lint, check et build.
+- **Statut :** En attente de validation humaine après vérification.
+
 ### P4-01 — Conserver et affiner l’index de projets
 
 - **Description :** appliquer le traitement visuel retenu à l’index et à ses

@@ -131,6 +131,27 @@ conséquences et approbation.
   Canvas, lifecycle et tests restent différés à un prototype P3/P5 dédié.
 - **Approbation :** utilisateur, 23 novembre 2026.
 
+## 2026-11-24 — P4-Accueil conserve H01 statique
+
+- **Contexte :** l’intégration finale de H01/H02/H03 révélait une possibilité
+  inutile de profondeur JavaScript sur l’orbite EP.
+- **Options :** conserver une profondeur pointeur limitée ou retirer toute
+  logique client et conserver le champ statique.
+- **Décision :** retirer la profondeur client du champ et conserver les anneaux,
+  les trajectoires, les liens HTML, l’animation native du titre et le lien
+  défilement réel. Les positions des trajectoires sont contraintes aux bords
+  internes du champ en desktop et sur mobile.
+- **Justification :** cette décision respecte directement la contrainte selon
+  laquelle H01 reste statique et lisible sur mobile, évite un listener inutilisé
+  et préserve un contenu complet sans JavaScript.
+- **Conséquences :** aucune profondeur pointeur n’est ajoutée; H01 reste
+  entièrement CSS/HTML. Le contrôle desktop a confirmé que les deux trajectoires
+  situées à droite étaient coupées par le conteneur Hero; leurs ancrages sont
+  désormais internes au cercle, comme sur mobile. H02 et H03 restent inchangés,
+  avec reduced motion vérifié. Aucun moteur ou canvas n’a été ajouté.
+- **Approbation :** décision locale réversible dans le périmètre approuvé;
+  l’incrément reste en attente de validation humaine explicite.
+
 ## Arbitrages humains en attente
 
 ### 2026-11-23 — Architecture native-first, moteurs différés
